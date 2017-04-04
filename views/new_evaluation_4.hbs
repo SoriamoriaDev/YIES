@@ -1,0 +1,69 @@
+
+
+
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    </br>
+    </br>
+    </br>
+    <div align="center"><img src="/img/4of4.png"></div>
+    </br>
+    </br>
+    </br>
+
+    <form action="/new_evaluation_4" method="post">
+
+        <input type='hidden' name='_csrf' value={{_csrf}}>
+
+            <input type="hidden"  name="last_modified" id="last_modified">
+            <input type="hidden"  name="status" value=1>
+
+        </br>
+        </br>
+
+
+        EVALUATION OF {{user.profile.first_name}} {{user.profile.last_name}}
+        </br>
+        </br>
+{{# each items }}
+    <input type="hidden"  name="evaluation_id" value={{this._id}}>
+    <input type="hidden"  id="evaluation_status" name="evaluation_status" value="{{this.status}}">
+
+<div class="container-survey">
+    <div class="row-heading">
+        <div class="col-md-3">STATUS</div>
+        <div class="col-md-3">RATINGS</div>
+        <div class="col-md-3">DEADLINE</div>
+        <div class="col-md-3" align="center">ACTION</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3">{{this.status}}</div>
+        <div class="col-md-3"><input type="text" id="evaluers"></div>
+        <div class="col-md-3"><input type="text" id="date" value="{{this.deadline}}"></div>
+        <div class="col-md-3"><div align="right"><button class="launch" type="submit">Launch</button></div></div>
+    </div>
+</div>
+    </br>
+    </br>
+
+
+{{/each}}
+
+    </form>
+        <div align="right"><a href="/account/dashboard">Dashboard</a></div>
+
+
+
+</div>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script>
+    document.getElementById("last_modified").value = Date.now();
+
+    var x = document.getElementById("date").value;
+    document.getElementById("date").value = x.slice(0,21);
+
+    document.getElementById("evaluers").value = "0 of {{eval}}";
+
+</script>

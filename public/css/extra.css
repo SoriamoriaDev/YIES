@@ -1,0 +1,199 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+.container-800 {
+    max-width: 800px;
+    margin: auto;
+}
+
+.row-heading {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #F5F5F5;
+    border-radius: 10px 10px 0px 0px;
+}
+.row-heading:before, .row-heading:after {
+    content: " ";
+    display: table; }
+.row-heading:after {
+    clear: both; }
+
+
+.container-survey {
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: lightgrey;
+    padding: 0px;
+    max-width: 800px;
+
+}
+
+.input-text{
+    border: none;
+    background: transparent;
+    padding: 15px;
+}
+
+.input-short{
+    border: none;
+    background: transparent;
+    max-width: 60px;
+}
+.input-medium{
+    border: none;
+    background: transparent;
+    max-width: 120px;
+}
+
+.verticaly-centered-text {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    text-align: left;
+}
+
+form button {
+    font: inherit;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #3498db;
+    border-width: 1px;
+    color: #3498db;
+    background: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #3498db;
+    color: white;
+}
+
+.row1 {
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+}
+
+input{
+    border: none;
+    background: transparent;
+
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.row:before, .row:after {
+    content: " ";
+    display: table; }
+.row:after {
+    clear: both; }
+
+textarea {
+    border: none;
+    background: transparent;
+}
+
+form button.launch {
+    font: inherit;
+    margin: 0px 0px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #3cb878;
+    border-width: 1px;
+    color: white;
+    background: #3cb878;
+    cursor: pointer;
+}
+
+form button.launch:hover {
+    background: white;
+    color: #3cb878;
+    border-color: #3cb878;
+}
+
+.container-circle {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    position: relative;
+
+}
+
+.add-evaluer {
+    font: inherit;
+    margin: 5px 0px;
+    width:100%;
+    padding: 10px;
+    max-width: 800px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #3cb878;
+    border-width: 1px;
+    color: white;
+    background: #3cb878;
+    cursor: pointer;
+}
+
+.add-evaluer:hover {
+    background: white;
+    color: #3cb878;
+    border-color: #3cb878;
+}
+
+.action-icons {
+    cursor: pointer;
+
+}
+
+.input-long {
+     border: 1px;
+     border-style: solid;
+     border-color: #3498db;;
+     /*background: transparent;*/
+     width: 300px;
+     min-width: 200px;
+ }
+
+.input-evaluer-modal {
+    border: 1px;
+    border-style: solid;
+    border-color: #3498db;;
+    /*background: transparent;*/
+    width: 300px;
+    min-width: 200px;
+    margin: 10px auto;
+}
+
+.button-link {
+    font: inherit;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #3498db;
+    border-width: 1px;
+    color: #3498db;
+    background: white;
+    cursor: pointer;
+}
+
+.button-link:hover {
+    background: #3498db;
+    color: white;
+}

@@ -1,0 +1,74 @@
+
+
+
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    </br>
+    </br>
+    </br>
+    <div align="center"><img src="/img/1of4.png"></div>
+    </br>
+    </br>
+    </br>
+
+    <form action="/new_evaluation_1" method="post">
+
+        <input type='hidden' name='_csrf' value={{_csrf}}>
+
+
+            <input type="hidden"  name="email" value={{user.email}}>
+            <input type="hidden"  name="first_name" value={{user.profile.first_name}}>
+            <input type="hidden"  name="last_name" value={{user.profile.last_name}}>
+            <input type="hidden"  name="job_title" value={{user.profile.job_title}}>
+            <input type="hidden"  name="company" value={{user.profile.company}}>
+            <input type="hidden"  name="department" value={{user.profile.department}}>
+            <input type="hidden"  name="evaluee_id" value={{user._id}}>
+            <input type="hidden"  name="last_modified" id="last_modified">
+            <input type="hidden"  name="status" value="Not launched">
+
+        REVIEW CYCLE:
+        <div class="container-survey">
+            <input class="input-text" type="text"  autofocus="autofocus" name="campaign" placeholder="example: 2016 Performance" style="width: 100%">
+        </div>
+        </br>
+        </br>
+        </br>
+        DEADLINE:
+        <div class="container-survey">
+            <input class="input-text" type="datetime-local"  name="deadline">
+        </div>
+        </br>
+        </br>
+        </br>
+<!--
+        <div class="container">
+            <div class="row">
+
+                            <p>Date:</p>
+                            <input type="text" value="" id="datetimepicker"/>
+            </div>
+
+        </div>
+-->
+        </br>
+        </br>
+        <div align="right"><button type="submit">Next ></button></div>
+
+    </form>
+</div>
+
+
+<script>
+    document.getElementById("last_modified").value = Date.now();
+
+    $('#datetimepicker').datetimepicker({
+        dayOfWeekStart : 1,
+        lang:'en',
+        disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
+        startDate:	'1986/01/05'
+    });
+
+</script>
+
+

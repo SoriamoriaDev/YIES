@@ -1,0 +1,295 @@
+<!--<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>-->
+<script src="/js/lib/jquery-2.2.4.min.js"></script>
+
+
+<script>var counter = 0;</script>
+
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    </br>
+    </br>
+    </br>
+    <div align="center"><img src="/img/3of4.png"></div>
+    </br>
+    </br>
+
+
+    <form action="/new_evaluation_3" method="post" onsubmit="return validateForm()">
+
+        <input type='hidden' name='_csrf' value={{_csrf}}>
+
+            <input type="hidden"  name="last_modified" id="last_modified">
+            <input type="hidden"  name="status" value="Not launched">
+            <input type="hidden" id="number_evaluers" name="number_evaluers" value="1">
+
+{{# each items }}
+            <input type="hidden"  name="evaluation_id" value={{this._id}}>
+        </br>
+        </br>
+
+        PEERS:
+<div class="container-survey">
+    <div class="row-heading">
+        <div class="col-md-1">#</div>
+        <div class="col-md-2">FIRST NAME</div>
+        <div class="col-md-3">LAST NAME</div>
+        <div class="col-md-4">MORE</div>
+        <div class="col-md-2"><div align="center">ACTION</div></div>
+    </div>
+    <div class="row" id="start-msg">
+        <div align="center">Add all the persons who should be asked for feedback.<input type="hidden" required></div>
+    </div>
+
+
+    <div id="no">
+
+
+    </div>
+
+</div>
+
+    <!--MODAL TO ADD ONE EVALUER-->
+
+   <div align="center"><input type="button" class="add-evaluer" data-toggle="modal" data-target="#mymodal" value="+ Add"></div>
+
+
+   <div class="modal fade" id="mymodal">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header"><h2>Add one evaluer</h2></div>
+
+               <div id="test" class="modal-body">
+
+
+                   <div><input class="input-evaluer-modal" type="text" name="email1" placeholder="Email"></div>
+                   <div><input class="input-evaluer-modal" type="text" name="first_name1" placeholder="First Name"></div>
+                   <div><input class="input-evaluer-modal" type="text" name="last_name1" placeholder="Last Name"></div>
+                   <div><input class="input-evaluer-modal" type="text" name="job_title1" placeholder="Job Title"></div>
+                   <div><input class="input-evaluer-modal" type="text" name="company1" placeholder="Company"></div>
+                   <div><input class="input-evaluer-modal" type="text" name="department1" placeholder="Department"></div>
+                   </br>
+                   <div id="sorry-msg-in-modal" align="center" style="display: none">Sorry but all fields must be completed.</div>
+                   </br>
+
+               <input type="button" id="add" class="add-evaluer" value="+ Add">
+
+               </div>
+           </div>
+       </div>
+   </div>
+
+<!-- ADD EVALUER'S DATA FROM MODAL -->
+<script>
+
+    $('#add').click(function() {
+
+
+        var em = $('input[name=email1]').val();
+        var fn = $('input[name=first_name1]').val();
+        var ln = $('input[name=last_name1]').val();
+        var jt = $('input[name=job_title1]').val();
+        var co = $('input[name=company1]').val();
+        var de = $('input[name=department1]').val();
+
+        // VALIDATE INPUT //
+
+        if (em==''|| fn=='' || ln==''||jt=='' || co=='' || de=='') {
+            document.getElementById("sorry-msg-in-modal").style.display = "";
+        }
+        else {
+
+            counter++;
+
+            $('#no').append(
+                    "<div class='row'>" +
+                    "<div class='col-md-1'><input class='index' type='text' name='number' value='" + counter + "' readonly></div>" +
+                    "<input class='input-short' type='hidden' name='email' value='" + em + "' readonly>" +
+                    "<div class='col-md-2'><input class='input-medium' type='text' name='first_name' value='" + fn + "'  readonly></div>" +
+                    "<div class='col-md-3'><input class='input-medium' type='text' name='last_name' value='" + ln + "'  readonly></div>" +
+                    "<div class='col-md-4'><i class='fa fa-envelope-o' title='" + em + "'></i>&nbsp &nbsp<i class='fa fa-briefcase' title='" + jt + "'></i>&nbsp &nbsp<i class='fa fa-building-o' title='" + co + "'></i>&nbsp &nbsp<i class='fa fa-users' title='" + de + "'></i></div>" +
+                    "<input class='input-medium' type='hidden' name='job_title' value='" + jt + "' required>" +
+                    "<input class='input-medium' type='hidden' name='company' value='" + co + "' readonly>" +
+                    "<input class='input-medium' type='hidden' name='department' value='" + de + "' readonly>" +
+                    "<div class='col-md-2'><div align='center'><a class='action-icons'><i class='fa fa-trash-o fa-lg' id='delete'></i></a></div></div>" +
+                    "</div>"
+            );
+
+            $('input[name=email1]').val('');
+            $('input[name=first_name1]').val('');
+            $('input[name=last_name1]').val('');
+            $('input[name=job_title1]').val('');
+            $('input[name=company1]').val('');
+            $('input[name=department1]').val('');
+
+            document.getElementById("number_evaluers").value = counter;
+            document.getElementById("start-msg").remove();
+            document.getElementById("sorry-msg-in-modal").style.display = "none";
+            $('#mymodal').modal('hide');
+
+        }
+
+    });
+
+
+</script>
+
+    </br>
+    </br>
+
+    SUPERVISOR:
+    <div class="container-survey">
+        <div class="row-heading">
+            <div class="col-md-1">#</div>
+            <div class="col-md-2">FIRST NAME</div>
+            <div class="col-md-3">LAST NAME</div>
+            <div class="col-md-4">MORE</div>
+            <div class="col-md-2"><div align="center">ACTION</div></div>
+        </div>
+        <div class="row" id="start-msg-supervisor">
+            <div align="center">Add your supervisor who should receive the completed final report.</div>
+        </div>
+
+
+        <div id="no2"></div>
+
+    </div>
+
+    <!--MODAL TO ADD THE SUPERVISOR-->
+
+    <div align="center"><input type="button" id='add-supervisor' class="add-evaluer" data-toggle="modal" data-target="#mymodal2" value="+ Add"></div>
+
+
+    <div class="modal fade" id="mymodal2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h2>Add your supervisor</h2></div>
+
+                <div id="test" class="modal-body">
+
+
+                    <div><input class="input-evaluer-modal" type="text" name="email2" placeholder="Email"></div>
+                    <div><input class="input-evaluer-modal" type="text" name="first_name2" placeholder="First Name"></div>
+                    <div><input class="input-evaluer-modal" type="text" name="last_name2" placeholder="Last Name"></div>
+                    <div><input class="input-evaluer-modal" type="text" name="job_title2" placeholder="Job Title"></div>
+                    <div><input class="input-evaluer-modal" type="text" name="company2" placeholder="Company"></div>
+                    <div><input class="input-evaluer-modal" type="text" name="department2" placeholder="Department"></div>
+
+
+                    <input type="button" id="add2" class="add-evaluer" data-dismiss="modal" value="+ Add">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ADD SUPERVISOR'S DATA FROM MODAL -->
+    <script>
+
+        $('#add2').click(function() {
+
+            counter++;
+
+            var em2 = $('input[name=email2]').val();
+            var fn2 = $('input[name=first_name2]').val();
+            var ln2 = $('input[name=last_name2]').val();
+            var jt2 = $('input[name=job_title2]').val();
+            var co2 = $('input[name=company2]').val();
+            var de2 = $('input[name=department2]').val();
+
+            if
+
+            $('#no2').append(
+                    "<div class='row'>"+
+                    "<div class='col-md-1'><input class='index2' type='text' name='number' value='1' readonly></div>"+
+                    "<input class='input-short' type='hidden' name='email3' value='"+em2+"' readonly>"+
+                    "<div class='col-md-2'><input class='input-medium' type='text' name='first_name3' value='"+fn2+"' readonly></div>"+
+                    "<div class='col-md-3'><input class='input-medium' type='text' name='last_name3' value='"+ln2+"' readonly></div>"+
+                    "<div class='col-md-4'><i class='fa fa-envelope-o' title='"+em2+"'></i>&nbsp &nbsp<i class='fa fa-briefcase' title='"+jt2+"'></i>&nbsp &nbsp<i class='fa fa-building-o' title='"+co2+"'></i>&nbsp &nbsp<i class='fa fa-users' title='"+de2+"'></i></div>" +
+                    "<input class='input-medium' type='hidden' name='job_title3' value='"+jt2+"' readonly>"+
+                    "<input class='input-medium' type='hidden' name='company3' value='"+co2+"' readonly>"+
+                    "<input class='input-medium' type='hidden' name='department3' value='"+de2+"' readonly>"+
+                    "<div class='col-md-2'><div align='center'><a class='action-icons'><i class='fa fa-trash-o fa-lg' id='delete2'></i></a></div></div>"+
+                    "</div>"
+
+            );
+
+            $('input[name=email2]').val('');
+            $('input[name=first_name2]').val('');
+            $('input[name=last_name2]').val('');
+            $('input[name=job_title2]').val('');
+            $('input[name=company2]').val('');
+            $('input[name=department2]').val('');
+
+            document.getElementById("start-msg-supervisor").style.display = "none";
+            document.getElementById("add-supervisor").style.display = "none";
+
+        });
+
+
+    </script>
+{{/each}}
+        <div align="right"><button type="submit">Next ></button></div>
+
+    </form>
+
+</div>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script>
+    document.getElementById("last_modified").value = Date.now();
+
+    // REMOVE ONE LINE OF EVALUER
+    $(document).ready(function () {
+        $('body').on('click', '#delete', function () {
+            $(this).closest('.row').remove();
+            counter--;
+            document.getElementById("number_evaluers").value = counter;
+            console.log("Counter total: " + counter);
+
+            // UPDATE DYNAMICALLY ALL NUMBERS
+            $('.index').each(function(i) {
+                $(this).val(i+1);
+            });
+        });
+    });
+
+    // REMOVE THE LINE OF SUPERVISOR
+    $(document).ready(function () {
+        $('body').on('click', '#delete2', function () {
+            $(this).closest('.row').remove();
+
+            // SHOW ADD BUTTON AGAIN
+            document.getElementById("add-supervisor").style.display = "";
+            document.getElementById("start-msg-supervisor").style.display = "";
+
+
+        });
+    });
+
+    // VALIDATE FORM //
+
+    function validateForm() {
+        if (counter < 2) {
+            $('#error-modal').modal('show');
+            return false;
+        }
+    }
+
+
+</script>
+
+<!--MODAL TO SHOW ERROR-->
+<div class="modal fade" id="error-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center"><h2>Sorry!</h2></div>
+            <br/><br/>
+            <div class="modal-body" align="center">You need at least 2 evaluers.</div>
+            <br/><br/>
+                <div class="modal-footer"> <input type="button" id="" class="add-evaluer" data-dismiss="modal" value="Got it!"></div>
+
+        </div>
+    </div>
+</div>
+
+

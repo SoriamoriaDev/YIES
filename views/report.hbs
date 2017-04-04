@@ -1,0 +1,139 @@
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/jquery/jqmeter.min.js"></script>
+<script type="text/javascript" src="/js/progressbar.js"></script>
+
+
+<div class="container-800">
+    <h1>{{ title }} {{#each info}} - {{[6]}}</h1>
+    <div class="row">
+
+        <div class="col-md-2">
+            <img src="/img/Profile_avatar2.png" style="width:110px; height:110px;">
+        </div>
+
+        <div class="col-md-8">
+            <p>Name: {{[1]}} {{[2]}}</p>
+            <p>Position: {{[3]}}</p>
+            <p>Department: {{[5]}}</p>
+            <p>Company: {{[4]}}</p>
+        </div>
+        <div class="col-md-2">
+            <p>Export to PDF</p>
+        </div>
+    </div>
+{{/each}}
+    </br>
+
+    <article class="container-survey">
+
+        <div class="row-heading">
+            <div class="col-md-4">STRENGTH</div>
+            <div class="col-md-8"></div>
+
+        </div>
+        <div class="row">
+    {{#each strong}}
+            <div class="col-md-4">
+                <div class="container-circle" id="container{{@index}}"></div>
+                <div class="row"><div align="center">{{[0]}}</div></div>
+
+            </div>
+<script>
+        var bar = new ProgressBar.Circle(container{{@index}}, {
+        color: '##3cb878',
+        // This has to be the same size as the maximum width to
+        // prevent clipping
+        strokeWidth: 7,
+        trailWidth: 1,
+        easing: 'easeInOut',
+        duration: 3000,
+        text: {
+        autoStyleContainer: false
+        },
+        from: { color: '#aaa', width: 1 },
+        to: { color: '##3cb878', width: 7 },
+        // Set default step function for all animate calls
+        step: function(state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
+
+        var value = (circle.value() * 10).toFixed(1);
+        if (value === 0) {
+        circle.setText('');
+        } else {
+        circle.setText(value);
+        }
+
+        }
+        });
+        //bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+        bar.text.style.fontSize = '3rem';
+
+        bar.animate(({{[1]}})/100);
+
+</script>
+
+
+    {{/each}}
+        </div>
+
+    </article>
+        </br>
+    <article class="container-survey">
+
+        <div class="row-heading">
+            <div class="col-md-4">ROOM FOR IMPROVEMENTS</div>
+            <div class="col-md-8"></div>
+        </div>
+        {{#each weak}}
+        <div class="row">
+            <div class="col-md-4">{{[0]}}</div>
+            <div class="col-md-6"><div id="weak{{@index}}"></div></div>
+            <div class="col-md-2"><div align="center">{{[2]}}</div></div>
+        </div>
+
+        <script>
+            $('#weak{{@index}}').jQMeter({
+                goal: '100',
+                raised: '{{[1]}}',
+                width: "350px",
+                height: "12px",
+                bgColor: "#d7d7d7",
+                barColor: "#f800a9",
+                meterOrientation: "horizontal",
+                animationSpeed: 3000,
+                counterSpeed: 3000,
+                displayTotal: false
+            });
+
+        </script>
+        {{/each}}
+    </article>
+        </br>
+    <article class="container-survey">
+
+        <div class="row-heading">
+            <div class="col-md-4">COMPETENCE</div>
+            <div class="col-md-4">LEVEL</div>
+            <div class="col-md-2"><div align="center">SCORE</div> </div>
+            <div class="col-md-2"><div align="center">#RATINGS</div></div>
+        </div>
+    {{#each items}}
+        <div class="row">
+            <div class="col-md-4">{{[0]}}</div>
+            <div class="col-md-4"><div id="meter{{@index}}"></div></div>
+            <div class="col-md-2"><div align="center">{{[2]}}</div></div>
+            <div class="col-md-2"><div align="center">{{[3]}}</div></div>
+        </div>
+
+        <script>
+            $('#meter{{@index}}').jQMeter({
+                goal: '100',
+                raised: '{{[1]}}'
+            });
+
+        </script>
+
+    {{/each}}
+    </article>
+</div>

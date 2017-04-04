@@ -1,0 +1,89 @@
+
+
+
+
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    </br>
+    </br>
+    </br>
+    <div align="center"><img src="/img/2of4.png"></div>
+    </br>
+    </br>
+
+
+    <form action="/new_evaluation_2" method="post">
+
+        <input type='hidden' name='_csrf' value={{_csrf}}>
+
+            <input type="hidden"  name="last_modified" id="last_modified">
+            <input type="hidden"  name="status" value="Not launched">
+            <input type="hidden"  name="number_questions" id="number_questions" value="16">
+
+{{# each items }}
+            <input type="hidden"  name="evaluation_id" value={{this._id}}>
+        </br>
+        </br>
+        INTRO TEXT:
+    <div class="container-survey">
+        <textarea name="intro_text" autofocus="autofocus" cols="107" rows="4" style="border: none; margin: 5px; resize: none" placeholder="example: Could you please take two minutes of your time in order to give feedback on Jonathan's performance during the past 6 month. Please rate all of his competences in a objective manner. Note: Your feedback will be kept anonymous." required></textarea>
+    </div>
+        </br>
+        QUESTIONS:
+<div class="container-survey">
+    <div class="row-heading">
+        <div class="col-md-2">NUMBER</div>
+        <div class="col-md-8">TEXT</div>
+        <div class="col-md-2"><div align="center">ACTION</div></div>
+    </div>
+
+    {{# each default_questions}}
+            <div class="row" id="row{{@index}}">
+                <div class="col-md-2"><input class="index" type="text" name="index" id="index{{@index}}" value=""></div>
+                <div class="col-md-8"><input class="input-long" type="text" name="question" value="{{this}}" required></div>
+                <div class="col-md-2"><div align="center"><a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a></div></div>
+            </div>
+
+        <script>
+
+            document.getElementById("index{{@index}}").value = {{@index}}+1;
+
+        </script>
+    {{/each}}
+
+{{/each}}
+        <div id="dynamicInput"></div>
+
+    </div>
+
+        <div align="center"><input type="button" class="add-evaluer" value="+ Add" onClick="addInput('dynamicInput');"></div>
+
+        <div align="right"><button type="submit">Next ></button></div>
+
+    </form>
+
+</div>
+<script src="/js/addInput_question.js" language="Javascript" type="text/javascript"></script>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+
+<script>
+
+    document.getElementById("last_modified").value = Date.now();
+
+
+    // REMOVE ONE LINE
+    $(document).ready(function () {
+        $('body').on('click', '#delete', function () {
+            $(this).closest('.row').remove();
+            counter--;
+            console.log("Counter total: " + counter);
+
+            // UPDATE DYNAMICALLY ALL NUMBERS
+            $('.index').each(function(i) {
+                $(this).val(i+1);
+            });
+        });
+    });
+
+</script>

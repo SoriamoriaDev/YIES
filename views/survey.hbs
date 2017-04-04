@@ -1,0 +1,68 @@
+<script>
+    var counter = 0;
+</script>
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    <form action="/survey" method="post">
+
+    <input type='hidden' name='_csrf' value={{_csrf}}>
+    <input type="hidden"  name="number_questions" id="number_questions" value="0">
+
+{{#each items}}
+{{# if open}}
+    <input type="hidden"  name="survey_id" value={{this._id}}>
+
+
+    <p>Hello {{this.evaluer.first_name}}</p>
+    <p>{{this.intro_text}}</p>
+    </br>
+    </br>
+
+
+    <div class="container-survey">
+    {{#each questions}}
+        <div class="row">
+            <div class="col-md-1"><div class="verticaly-centered-text"><input type="text" name="#" id ="index{{@index}}" readonly></div></div>
+            <div class="col-md-4"><div class="verticaly-centered-text"><input type="text" name="q{{@index}}" value="{{this}}" readonly></div></div>
+            <div class="col-md-7"><div class="rateYo1"></div><input type="hidden" name="answer" value=""></div>
+        </div>
+
+        <script>
+            document.getElementById("index{{@index}}").value = {{@index}}+1;
+            counter++;
+            document.getElementById("number_questions").value = counter;
+        </script>
+
+    {{/each}}
+    </div>
+
+    <div align="right"><button type="submit">Send</button></div>
+    </form>
+</div>
+{{else}}
+    <div align="center">Sorry, the evaluation has already been submitted.</div>
+
+{{/if}}
+{{/each}}
+
+
+
+
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery.rateyo.js"></script>
+
+<script>
+
+    $(".rateYo1").rateYo({
+        onSet: function (rating, rateYoInstance) {
+            $(this).next().val(rating);
+            console.log(rating);
+        }
+    });
+
+</script>
+
+<script>
+    document.getElementById("last_modified").value = Date.now();
+</script>

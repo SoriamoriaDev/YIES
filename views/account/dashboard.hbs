@@ -1,0 +1,41 @@
+<div class="container-800">
+<h1>{{ title }}</h1>
+<p>Hello {{ user.profile.first_name }} with userID: {{user._id}}</p>
+<br>
+<br>
+    <form action="../new_evaluation_1">
+<div align="right"><button href="../new_evaluation_1">+ NEW</button></div>
+    </form>
+<article class="container-survey">
+
+    <div class="row-heading">
+        <div class="col-md-2">DATE</div>
+        <div class="col-md-5">CAMPAIGN</div>
+        <div class="col-md-3">STATUS</div>
+        <div class="col-md-2"><div align="center">ACTION</div></div>
+    </div>
+    {{#if items}}
+    {{# each items }}
+    <div class="row">
+        <div class="col-md-2">{{this.creation_date}}</div>
+        <div class="col-md-5">{{ this.campaign }}</div>
+        <div class="col-md-3">{{this.status}}</div>
+        <div class="col-md-2">
+            <div align="center">
+                <a class="action-icons"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>&nbsp &nbsp
+                <a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a>&nbsp &nbsp
+                <a class="action-icons" href="/report?evaluation_id={{this._id}}"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+        <br>
+        <div align="center">No previous evaluations to show. Create a new one.</div>
+        <br>
+        <br>
+    {{/if}}
+
+</article>
+
+</div>

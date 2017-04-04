@@ -1,0 +1,71 @@
+db.results.insert({
+  email: "maxime.fontanille@gmail.com",
+  name: "David Croce",
+  job_title: "Installation Engineer",
+  company: "Saipem",
+  campaign: "Performance 2016",
+
+  question1: {
+    name: "Organisational skills",
+    score: 8,
+    ratings: 12
+  },
+  question2: {
+    name: "Punctuality",
+    score: 6,
+    ratings: 10
+  },
+  question3: {
+    name: "Offshore installation",
+    score: 9,
+    ratings: 9
+  }
+})
+
+db.results.insert({
+  email: "nicolas.aussenac@gmail.com",
+  name: "Louis-Marc Pousset",
+  job_title: "Category Manager",
+  company: "TechnipFMC",
+  campaign: "Performance 2016",
+
+  question1: {
+    name: "Organisational skills",
+    score: 7,
+    ratings: 11
+  },
+  question2: {
+    name: "Punctuality",
+    score: 9,
+    ratings: 8
+  },
+  question3: {
+    name: "Piping",
+    score: 8,
+    ratings: 6
+  }
+})
+
+db.results.insert({
+  email: "nicolas.aussenac@gmail.com",
+  name: "Antony Cornillon",
+  job_title: "Project Purchaser",
+  company: "TechnipFMC",
+  campaign: "Performance 2016",
+
+  question1: {
+    name: "Organisational skills",
+    score: 10,
+    ratings: 10
+  },
+  question2: {
+    name: "Punctuality",
+    score: 6,
+    ratings: 11
+  },
+  question3: {
+    name: "Contract knowledge",
+    score: 5,
+    ratings: 7
+  }
+})
