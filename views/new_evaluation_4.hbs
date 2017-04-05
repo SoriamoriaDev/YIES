@@ -64,11 +64,10 @@
 
     document.getElementById("evaluers").value = "0 of {{eval}}";
 
-    console.log($("#evaluation_status").val);
-
-    if($("#evaluation_status").val = "In process" ){
-
-        document.getElementById("#launch-button").style.display = "";
+    // HIDE LAUNCH BUTTON AFTER SENDING
+    var test = $("#evaluation_status").val();
+    if( test != 'In process'){
+        document.getElementById("launch-button").style = "";
     }
 
 </script>
