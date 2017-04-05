@@ -262,7 +262,7 @@ app.listen(app.get('port'), () => {
  * Task scheduler.
  */
 
-var j = schedule.scheduleJob({hour: 15, minute: 59}, function(){
+var j = schedule.scheduleJob({hour: 12, minute: 11}, function(){
   sendEmail();
 
 });
