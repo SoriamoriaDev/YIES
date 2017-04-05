@@ -20,6 +20,7 @@ const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const hbs = require('express-handlebars');
+const schedule = require('node-schedule');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
@@ -250,6 +251,14 @@ app.use(errorHandler());
 app.listen(app.get('port'), () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); 
   console.log('  Press CTRL-C to stop\n');
+  var today = new Date();
+  var maintenant = today.toISOString();
+  console.log(maintenant);
 });
+
+var j = schedule.scheduleJob('* /1 * * * *', function(){
+  console.log('Node-schedule works!!!');
+});
+
 
 module.exports = app;

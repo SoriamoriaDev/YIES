@@ -36,21 +36,8 @@
         </br>
         DEADLINE:
         <div class="container-survey">
-            <input class="input-text" type="datetime-local"  name="deadline">
+            <input class="input-text" id="datetimepicker" name="deadline" placeholder="Enter deadline" required>
         </div>
-        </br>
-        </br>
-        </br>
-<!--
-        <div class="container">
-            <div class="row">
-
-                            <p>Date:</p>
-                            <input type="text" value="" id="datetimepicker"/>
-            </div>
-
-        </div>
--->
         </br>
         </br>
         <div align="right"><button type="submit">Next ></button></div>
@@ -61,12 +48,10 @@
 
 <script>
     document.getElementById("last_modified").value = Date.now();
-
-    $('#datetimepicker').datetimepicker({
-        dayOfWeekStart : 1,
-        lang:'en',
-        disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
-        startDate:	'1986/01/05'
+    $( document ).ready(function() {
+        $('#datetimepicker').datetimepicker(
+                //{format:'d/m/Y H:i'}
+        );
     });
 
 </script>

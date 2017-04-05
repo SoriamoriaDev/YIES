@@ -34,7 +34,7 @@ exports.postNewEvaluation1 = (req, res, next) =>
     newEvaluation.campaign = req.body.campaign;
     newEvaluation.deadline = req.body.deadline;
     newEvaluation.last_modified = req.body.last_modified;
-    newEvaluation.status = "Not Launched";
+    newEvaluation.status = "Not launched";
 
     newEvaluation.save();
     res.redirect('/new_evaluation_2');
