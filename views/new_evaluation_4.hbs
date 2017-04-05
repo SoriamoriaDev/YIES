@@ -1,6 +1,4 @@
 
-
-
 <div class="container-800">
     <h1>{{ title }}</h1>
 
@@ -42,7 +40,7 @@
         <div class="col-md-3">{{this.status}}</div>
         <div class="col-md-3"><input type="text" id="evaluers"></div>
         <div class="col-md-3"><input type="text" id="date" value="{{this.deadline}}"></div>
-        <div class="col-md-3"><div align="right"><button class="launch" type="submit">Launch</button></div></div>
+        <div class="col-md-3"><div id="launch-button" align="right" style="display: none"><button class="launch" type="submit">Launch</button></div></div>
     </div>
 </div>
     </br>
@@ -52,12 +50,12 @@
 {{/each}}
 
     </form>
-        <div align="right"><a href="/account/dashboard">Dashboard</a></div>
+        <div align="right"><a class="button-link" href="/account/dashboard">Dashboard</a></div>
 
 
 
 </div>
-<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+
 <script>
     document.getElementById("last_modified").value = Date.now();
 
@@ -65,5 +63,12 @@
     document.getElementById("date").value = x.slice(0,21);
 
     document.getElementById("evaluers").value = "0 of {{eval}}";
+
+    console.log($("#evaluation_status").val);
+
+    if($("#evaluation_status").val = "In process" ){
+
+        document.getElementById("#launch-button").style.display = "";
+    }
 
 </script>

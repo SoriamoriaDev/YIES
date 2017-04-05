@@ -1,6 +1,3 @@
-<!--<script src="/js/addInput.js" language="Javascript" type="text/javascript"></script>-->
-<script src="/js/lib/jquery-2.2.4.min.js"></script>
-
 
 <script>var counter = 0;</script>
 
@@ -59,8 +56,7 @@
            <div class="modal-content">
                <div class="modal-header"><h2>Add one evaluer</h2></div>
 
-               <div id="test" class="modal-body">
-
+               <div class="modal-body">
 
                    <div><input class="input-evaluer-modal" type="text" name="email1" placeholder="Email"></div>
                    <div><input class="input-evaluer-modal" type="text" name="first_name1" placeholder="First Name"></div>
@@ -165,7 +161,7 @@
             <div class="modal-content">
                 <div class="modal-header"><h2>Add your supervisor</h2></div>
 
-                <div id="test" class="modal-body">
+                <div class="modal-body">
 
 
                     <div><input class="input-evaluer-modal" type="text" name="email2" placeholder="Email"></div>
@@ -174,9 +170,11 @@
                     <div><input class="input-evaluer-modal" type="text" name="job_title2" placeholder="Job Title"></div>
                     <div><input class="input-evaluer-modal" type="text" name="company2" placeholder="Company"></div>
                     <div><input class="input-evaluer-modal" type="text" name="department2" placeholder="Department"></div>
+                    </br>
+                    <div id="sorry-msg-in-modal-supervisor" align="center" style="display: none">Sorry but all fields must be completed.</div>
+                    </br>
 
-
-                    <input type="button" id="add2" class="add-evaluer" data-dismiss="modal" value="+ Add">
+                    <input type="button" id="add2" class="add-evaluer" value="+ Add">
 
                 </div>
             </div>
@@ -188,8 +186,6 @@
 
         $('#add2').click(function() {
 
-            counter++;
-
             var em2 = $('input[name=email2]').val();
             var fn2 = $('input[name=first_name2]').val();
             var ln2 = $('input[name=last_name2]').val();
@@ -197,7 +193,13 @@
             var co2 = $('input[name=company2]').val();
             var de2 = $('input[name=department2]').val();
 
-            if
+            // VALIDATE INPUT //
+
+            if (em2==''|| fn2=='' || ln2==''||jt2=='' || co2=='' || de2=='') {
+                document.getElementById("sorry-msg-in-modal-supervisor").style.display = "";
+            }
+            else {
+
 
             $('#no2').append(
                     "<div class='row'>"+
@@ -223,8 +225,10 @@
 
             document.getElementById("start-msg-supervisor").style.display = "none";
             document.getElementById("add-supervisor").style.display = "none";
+            document.getElementById("sorry-msg-in-modal-supervisor").style.display = "none";
+            $('#mymodal2').modal('hide');
 
-        });
+        }});
 
 
     </script>
@@ -234,7 +238,7 @@
     </form>
 
 </div>
-<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+
 <script>
     document.getElementById("last_modified").value = Date.now();
 
@@ -266,17 +270,19 @@
         });
     });
 
+
     // VALIDATE FORM //
 
     function validateForm() {
         if (counter < 2) {
+            console.log("Error: not enough evaluers")
             $('#error-modal').modal('show');
             return false;
         }
     }
-
-
 </script>
+
+
 
 <!--MODAL TO SHOW ERROR-->
 <div class="modal fade" id="error-modal">
