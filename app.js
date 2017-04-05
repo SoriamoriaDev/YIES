@@ -256,7 +256,7 @@ app.listen(app.get('port'), () => {
   console.log(maintenant);
 });
 
-var j = schedule.scheduleJob('* /1 * * * *', function(){
+var j = schedule.scheduleJob('* 0 12 * * *', function(){
   console.log('Node-schedule works!!!');
 });
 
