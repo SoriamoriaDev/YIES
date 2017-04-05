@@ -21,6 +21,8 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
+const sendEmail = require('./task.js');
+
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
@@ -256,9 +258,17 @@ app.listen(app.get('port'), () => {
   console.log(maintenant);
 });
 
-var j = schedule.scheduleJob('* 0 12 * * *', function(){
-  console.log('Node-schedule works!!!');
+/**
+ * Task scheduler.
+ */
+
+var j = schedule.scheduleJob({hour: 14, minute: 11}, function(){
+  sendEmail();
+
 });
 
+/**
+ * Finish.
+ */
 
 module.exports = app;
