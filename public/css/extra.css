@@ -204,3 +204,20 @@ form button.launch:hover {
     background-color: #fff;
     border-color: #3d86fc;
 }
+
+.button-register {
+    font: inherit;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #3cb878;
+    border-width: 1px;
+    color: #3cb878;
+    background: white;
+    cursor: pointer;
+}
+
+.button-register:hover {
+    background: #3cb878;
+    color: white;

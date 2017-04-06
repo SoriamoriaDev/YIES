@@ -46,6 +46,8 @@ const dashboardController = require('./controllers/dashboard');
 const new_evaluationController = require('./controllers/new_evaluation');
 const sandboxController = require('./controllers/sandbox');
 const thanks_feedbackController = require('./controllers/thanks_feedback');
+const proController = require('./controllers/pro');
+const pricingController = require('./controllers/pricing');
 
 /**
  * API keys and Passport configuration.
@@ -131,9 +133,8 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 app.get('/', homeController.index);
-app.get('/sandbox', sandboxController.getSandbox);
-app.post('/sandbox', sandboxController.postSandbox);
-app.get('/thanks_feedback', thanks_feedbackController.getThanks_feedback);
+
+
 app.get('/dashboard', dashboardController.getDashboard);
 app.get('/new_evaluation_1', new_evaluationController.index);
 app.post('/new_evaluation_1', new_evaluationController.postNewEvaluation1);
@@ -162,6 +163,13 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+
+app.get('/sandbox', sandboxController.getSandbox);
+app.post('/sandbox', sandboxController.postSandbox);
+app.get('/thanks_feedback', thanks_feedbackController.getThanks_feedback);
+app.get('/pro', proController.getPro);
+app.post('/pro', proController.postPro);
+app.get('/pricing', pricingController.getPricing);
 
 /**
  * API examples routes.
