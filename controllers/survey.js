@@ -36,6 +36,6 @@ exports.postSurvey = (req, res, next) => {
     }
     
     survey.save();
-    res.redirect('/');
+    res.redirect('/thanks_feedback');
   });
 };

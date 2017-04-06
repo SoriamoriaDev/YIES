@@ -6,6 +6,7 @@
     margin: auto;
 }
 
+
 .row-heading {
     margin-left: 0px;
     margin-right: 0px;
@@ -196,4 +197,10 @@ form button.launch:hover {
 .button-link:hover {
     background: #3498db;
     color: white;
+}
+
+.btn-forgot {
+    color: #4d90fc;
+    background-color: #fff;
+    border-color: #3d86fc;
 }

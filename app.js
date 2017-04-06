@@ -45,6 +45,7 @@ const reportController = require('./controllers/report');
 const dashboardController = require('./controllers/dashboard');
 const new_evaluationController = require('./controllers/new_evaluation');
 const sandboxController = require('./controllers/sandbox');
+const thanks_feedbackController = require('./controllers/thanks_feedback');
 
 /**
  * API keys and Passport configuration.
@@ -132,6 +133,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.get('/', homeController.index);
 app.get('/sandbox', sandboxController.getSandbox);
 app.post('/sandbox', sandboxController.postSandbox);
+app.get('/thanks_feedback', thanks_feedbackController.getThanks_feedback);
 app.get('/dashboard', dashboardController.getDashboard);
 app.get('/new_evaluation_1', new_evaluationController.index);
 app.post('/new_evaluation_1', new_evaluationController.postNewEvaluation1);

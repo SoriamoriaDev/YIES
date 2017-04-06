@@ -24,7 +24,7 @@ exports.getLogin = (req, res) => {
 exports.postLogin = (req, res, next) => {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+  //req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -75,9 +75,9 @@ exports.getSignup = (req, res) => {
  */
 exports.postSignup = (req, res, next) => {
   req.assert('email', 'Email is not valid').isEmail();
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
+  req.assert('password', 'Password must be at least 6 characters long').len(6);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+  //req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -88,7 +88,14 @@ exports.postSignup = (req, res, next) => {
 
   const user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    profile: {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      job_title: req.body.job_title,
+      company: req.body.company,
+      department: req.body.department
+    }
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
@@ -125,7 +132,7 @@ exports.getAccount = (req, res) => {
  */
 exports.postUpdateProfile = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+  //req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -276,16 +283,23 @@ exports.postReset = (req, res, next) => {
     },
     function sendResetPasswordEmail(user, done) {
       const transporter = nodemailer.createTransport({
-        service: 'SendGrid',
+        service: 'Gmail',
         auth: {
-          user: process.env.SENDGRID_USER,
-          pass: process.env.SENDGRID_PASSWORD
+          user: "soriamoriaapp@gmail.com",
+          pass: "123456Soria"
         }
+
+        /*     service: 'SendGrid',
+         auth: {
+         user: process.env.SENDGRID_USER,
+         pass: process.env.SENDGRID_PASSWORD
+         }   */
+
       });
       const mailOptions = {
         to: user.email,
-        from: 'hackathon@starter.com',
-        subject: 'Your Hackathon Starter password has been changed',
+        from: 'YIES Insightful Talent Evaluation<noreply@yies.co>',
+        subject: 'Your YIES password has been changed',
         text: `Hello,\n\nThis is a confirmation that the password for your account ${user.email} has just been changed.\n`
       };
       transporter.sendMail(mailOptions, (err) => {
@@ -318,7 +332,7 @@ exports.getForgot = (req, res) => {
  */
 exports.postForgot = (req, res, next) => {
   req.assert('email', 'Please enter a valid email address.').isEmail();
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+  //req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   const errors = req.validationErrors();
 
@@ -350,16 +364,21 @@ exports.postForgot = (req, res, next) => {
     },
     function sendForgotPasswordEmail(token, user, done) {
       const transporter = nodemailer.createTransport({
-        service: 'SendGrid',
+
+    /*    service: 'SendGrid',
         auth: {
           user: process.env.SENDGRID_USER,
-          pass: process.env.SENDGRID_PASSWORD
+          pass: process.env.SENDGRID_PASSWORD   */
+        service: 'Gmail',
+        auth: {
+          user: "soriamoriaapp@gmail.com",
+          pass: "123456Soria"
         }
       });
       const mailOptions = {
         to: user.email,
-        from: 'hackathon@starter.com',
-        subject: 'Reset your password on Hackathon Starter',
+        from: 'YIES Insightful Talent Evaluation<noreply@yies.co>',
+        subject: 'Reset your password on YIES',
         text: `You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n
           Please click on the following link, or paste this into your browser to complete the process:\n\n
           http://${req.headers.host}/reset/${token}\n\n
