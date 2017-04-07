@@ -18,6 +18,7 @@
     {{#if items}}
     {{# each items }}
     <div class="row">
+        <input type="hidden" id="deadline" value="{{this.deadline}}">
         <div class="col-md-2">{{this.creation_date}}</div>
         <div class="col-md-5">{{ this.campaign }}</div>
         <div class="col-md-3">{{this.status}}</div>
@@ -25,7 +26,7 @@
             <div align="center">
                 <a class="action-icons"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>&nbsp &nbsp
                 <a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a>&nbsp &nbsp
-                <a class="action-icons" href="/report?evaluation_id={{this._id}}"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></a>
+                <!--<div id="report-icon"> style="display: none"--> <a class="action-icons" href="/report?evaluation_id={{this._id}}"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -40,3 +41,16 @@
 </article>
 
 </div>
+
+<script>
+    /*
+    // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
+    var deadline = $("#deadline").val();
+    console.log("Deadline: " + deadline);
+    var maintenant = new Date();
+    console.log("Maintenant: "+ maintenant);
+    if( deadline > maintenant){
+        document.getElementById("report-icon").style = "";
+    }
+*/
+</script>

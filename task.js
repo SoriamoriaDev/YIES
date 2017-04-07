@@ -27,7 +27,7 @@ function sendEmail() {
             to: 'maxime.fontanille@gmail.com',
             from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
             subject: 'Scheduled email works',
-            text: "It works!"
+            text: 'Cool' +'\n\n\n' + "/survey?permalink="
         };
 
         transporter.sendMail(mailOptions, (err) => {
