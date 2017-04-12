@@ -49,7 +49,7 @@ exports.getReport = (req, res, next) => {
         report2.push([name]);
     });
 
-        /*** POPULATE REPORTS WITH SCORES FROM EACH SURVEY*/
+        /*** POPULATE REPORTS WITH SCORES FROM EACH SURVEY */
         for (i=0; i < doc.length; i++) {
             var y = doc[i];
             for (z=0; z < competences.length; z++) {
@@ -77,29 +77,38 @@ exports.getReport = (req, res, next) => {
     console.log("INFO file:"+ information);
     console.log(report2);
 
+        /*** SORTING 3 BEST AND 3 WORSE RATINGS */
 
     var report3 = report2.slice(0);
+        console.log("Report after slice: " + report3);
 
+        // FILTER OUT ENTRIES WITH NaN
+        var report3 = report3.filter(function(item) {
+            return item[1] !== "NaN";});
+        console.log("No more entries with NaN: " + report3);
+
+        // SORT BEST TO WORSE
     report3.sort(function(a, b) {
         return a[1] < b[1] ? 1 : -1;
     });
 
-    console.log("Sorted: strong: " + report3);
+    console.log("Sorted by strongest: " + report3);
 
+        // PUSH 3 BEST IN NEW ARRAY
     var strength = [];
     strength.push(report3[0]);
     strength.push(report3[1]);
     strength.push(report3[2]);
     console.log(strength);
 
-    console.log(report2);
-
+        // SORT WORSE TO BEST
     report3.sort(function(a, b) {
         return a[1] > b[1] ? 1 : -1;
     });
 
-    console.log("Sorted weak: " + report3);
+    console.log("Sorted by weakest: " + report3);
 
+        // PUSH 3 WORSE IN NEW ARRAY
     var weakness = [];
     weakness.push(report3[0]);
     weakness.push(report3[1]);

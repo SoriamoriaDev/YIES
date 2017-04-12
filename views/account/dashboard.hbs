@@ -1,3 +1,4 @@
+
 <div class="container-800">
 <h1>{{ title }}</h1>
     <br>
@@ -18,18 +19,34 @@
     {{#if items}}
     {{# each items }}
     <div class="row">
-        <input type="hidden" id="deadline" value="{{this.deadline}}">
+        <input type="hidden" id="deadline{{@index}}" value="{{this.deadline}}">
         <div class="col-md-2">{{this.creation_date}}</div>
         <div class="col-md-5">{{ this.campaign }}</div>
-        <div class="col-md-3">{{this.status}}</div>
+        <div class="col-md-3"><input type="text" id="status{{@index}}" value="{{ this.status }}" readonly></div>
         <div class="col-md-2">
             <div align="center">
-                <a class="action-icons"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>&nbsp &nbsp
-                <a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a>&nbsp &nbsp
-                <!--<div id="report-icon"> style="display: none"--> <a class="action-icons" href="/report?evaluation_id={{this._id}}"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></a>
+                <!--<a class="action-icons"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>&nbsp &nbsp-->
+                <!--<a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a>&nbsp &nbsp-->
+                <a class="action-icons" style="display: none" id="report_button{{@index}}" href="/report?evaluation_id={{this._id}}"><i class="fa fa-file-text-o fa-lg" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
+        <script>
+
+            // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
+            var deadline = $("#deadline{{@index}}").val();
+            console.log(deadline);
+            var deadline2 = +new Date(deadline);
+            console.log("Deadline : " + deadline2);
+            var maintenant = +new Date();
+            console.log("Maintenant: "+ maintenant);
+            if( deadline2 < maintenant ){
+                document.getElementById("report_button{{@index}}").style = "";
+                document.getElementById("status{{@index}}").value = "Completed";
+            }
+
+        </script>
+
     {{/each}}
     {{else}}
         <br>
@@ -41,16 +58,3 @@
 </article>
 
 </div>
-
-<script>
-    /*
-    // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
-    var deadline = $("#deadline").val();
-    console.log("Deadline: " + deadline);
-    var maintenant = new Date();
-    console.log("Maintenant: "+ maintenant);
-    if( deadline > maintenant){
-        document.getElementById("report-icon").style = "";
-    }
-*/
-</script>

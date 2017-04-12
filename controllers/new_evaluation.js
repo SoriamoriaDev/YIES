@@ -234,7 +234,10 @@ const transporter = nodemailer.createTransport({
             to: evaluation.evaluers[i].email,
             from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
             subject: 'Feedback needed on ' + evaluation.first_name + ' performance',
-            text: evaluation.intro_text +'\n\n' +"Click on the link below:"+'\n'+ process.env.APP_URL + "/survey?permalink=" + evaluation._id + i
+            text: 'Hello ' + evaluation.evaluers[i].first_name + ',' + '\n\n' +
+                evaluation.intro_text + '\n\n' +
+                "Click on the link below:" + '\n' +
+                process.env.APP_URL + "/survey?permalink=" + evaluation._id + i
         };
 
         transporter.sendMail(mailOptions, (err) => {

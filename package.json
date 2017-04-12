@@ -67,7 +67,7 @@
     "twilio": "^3.3.1-edge",
     "twit": "^2.2.5",
     "validator": "^6.1.0",
-    "xlsx": "^0.9.9"
+    "xlsx": "^0.9.10"
   },
   "devDependencies": {
     "chai": "^3.5.0",

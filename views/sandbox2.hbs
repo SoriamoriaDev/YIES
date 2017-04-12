@@ -1,0 +1,109 @@
+
+
+<div class="container-800">
+    <h1>{{ title }}</h1>
+
+    <br>
+    <br>
+
+    <input type="file" name="xlfile" id="xlf">
+    <br>
+
+    <input type="submit" onclick="return importer();">
+
+    <br>
+    <br>
+
+    <script>
+
+
+        function importer() {
+            //var url = "/js/list_of_evaluers.xlsx";
+            var url = document.getElementById('xlf');
+            var oReq = new XMLHttpRequest();
+            oReq.open("GET", url, true);
+            oReq.responseType = "arraybuffer";
+
+            oReq.onload = function (e) {
+                var arraybuffer = oReq.response;
+
+                /* convert data to binary string */
+                var data = new Uint8Array(arraybuffer);
+                var arr = new Array();
+                for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                var bstr = arr.join("");
+
+                /* Call XLSX */
+                var workbook = XLSX.read(bstr, {type: "binary"});
+
+                /* DO SOMETHING WITH workbook HERE */
+                var first_sheet_name = workbook.SheetNames[0];
+
+                /* Get worksheet */
+                var worksheet = workbook.Sheets[first_sheet_name];
+                var results = XLSX.utils.sheet_to_json(worksheet);
+                console.log("Results: " + results)
+                console.log("Results first: " + results[0].company);
+                console.log(XLSX.utils.sheet_to_json(worksheet));
+
+
+                for (i = 0; i < results.length; i++) {
+
+                    $('#no').append(
+                            "<div class='row'>" +
+                            "<div class='col-md-1'><input class='index' type='text' name='number' value='1' readonly></div>" +
+                            "<input class='input-short' type='hidden' name='email' value='" + results[i].email + "' readonly>" +
+                            "<div class='col-md-2'><input class='input-medium' type='text' name='first_name' value='" + results[i].first_name + "'  readonly></div>" +
+                            "<div class='col-md-3'><input class='input-medium' type='text' name='last_name' value='" + results[i].last_name + "'  readonly></div>" +
+                            "<div class='col-md-4'><i class='fa fa-envelope-o' title='" + results[i].email + "'></i>&nbsp &nbsp<i class='fa fa-briefcase' title='" + results[i].job_title + "'></i>&nbsp &nbsp<i class='fa fa-building-o' title='" + results[i].company + "'></i>&nbsp &nbsp<i class='fa fa-users' title='" + results[i].department + "'></i></div>" +
+                            "<input class='input-medium' type='hidden' name='job_title' value='" + results[i].job_title + "' required>" +
+                            "<input class='input-medium' type='hidden' name='company' value='" + results[i].company + "' readonly>" +
+                            "<input class='input-medium' type='hidden' name='department' value='" + results[i].department + "' readonly>" +
+                            "<div class='col-md-2'><div align='center'><a class='action-icons'><i class='fa fa-trash-o fa-lg' id='delete'></i></a></div></div>" +
+                            "</div>"
+                    );
+
+                }
+
+            };
+
+            oReq.send();
+
+        }
+
+</script>
+
+    <div class="container-survey">
+        <div class="row-heading">
+            <div class="col-md-1">#</div>
+            <div class="col-md-2">FIRST NAME</div>
+            <div class="col-md-3">LAST NAME</div>
+            <div class="col-md-4">MORE</div>
+            <div class="col-md-2"><div align="center">ACTION</div></div>
+        </div>
+                <div id="no"></div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    // REMOVE ONE LINE OF EVALUER
+    $(document).ready(function () {
+        $('body').on('click', '#delete', function () {
+            $(this).closest('.row').remove();
+            counter--;
+            document.getElementById("number_evaluers").value = counter;
+            console.log("Counter total: " + counter);
+
+            // UPDATE DYNAMICALLY ALL NUMBERS
+            $('.index').each(function(i) {
+                $(this).val(i+1);
+            });
+        });
+    });
+
+</script>
+

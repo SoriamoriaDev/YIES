@@ -11,6 +11,8 @@ const evaluationSchema = new Schema({
   last_modified: Date,
   status: String,
   deadline: Date,
+  removed: Boolean,
+  notification_sent: Boolean,
 
   email: String,
   first_name: String,
