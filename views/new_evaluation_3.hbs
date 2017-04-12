@@ -1,6 +1,24 @@
 
 <script>var counter = 0;</script>
 
+<head>
+
+    <style>
+        #drop{
+            border:2px dashed #3cb878;
+            -moz-border-radius:5px;
+            -webkit-border-radius:5px;
+            border-radius:5px;
+            padding:25px;
+            text-align:center;
+            font-size: 20px;
+        }
+        #b64data{
+            width:100%;
+        }
+    </style>
+</head>
+
 <div class="container-800">
     <h1>{{ title }}</h1>
 
@@ -24,8 +42,52 @@
             <input type="hidden"  name="evaluation_id" value={{this._id}}>
         </br>
         </br>
+    <div>
+        <span style="float: left;">PEERS:</span>
+        <span style="float: right;"><a class='action-icons' data-toggle="modal" data-target="#import-modal"><div id="import"><i class="fa fa-download"></i>IMPORT</div></a></span>
+    </div>
 
-        PEERS:
+    <!--MODAL TO IMPORT-->
+
+
+    <div class="modal fade" id="import-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><h2>Import a list from a Excel file</h2></div>
+
+                <div class="modal-body" align="center">
+
+                    <br>
+                    <div id="drop">Drop your Excel file here</div>
+                    <br>
+                    OR
+                    <br>
+                    <br>
+                    <p><input type="file" name="xlfile" id="xlf" value="Browse your computer"></p>
+                    <br>
+                    <br>
+                    <div align="left">Accepted data format:</div>
+                    <br>
+                    <div><img src="/img/excel_file_format.png" style="width:550px"></div>
+
+
+                    </br>
+                    <div id="sorry-msg-in-modal" align="center" style="display: none">Sorry but the file format is invalid.</div>
+                    </br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="hidden" name="useworker" value="checked">
+    <input type="hidden" name="xferable" value="checked">
+    <input type="hidden" name="userabs" value="checked">
+    <input type="hidden" name="checkbox" value="checked">
+
+<!-- TABLE WITH EVALUERS -->
+        </br>
 <div class="container-survey">
     <div class="row-heading">
         <div class="col-md-1">#</div>
@@ -45,6 +107,8 @@
     </div>
 
 </div>
+
+<script src="/js/importExcel.js"></script>
 
     <!--MODAL TO ADD ONE EVALUER-->
 
