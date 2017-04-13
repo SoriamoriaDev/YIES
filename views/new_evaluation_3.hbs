@@ -1,5 +1,5 @@
 
-<script>var counter = 0;</script>
+
 
 <head>
 
@@ -22,6 +22,7 @@
 <div class="container-800">
     <h1>{{ title }}</h1>
 
+    <script>var counter = 0;</script>
     </br>
     </br>
     </br>
@@ -36,7 +37,7 @@
 
             <input type="hidden"  name="last_modified" id="last_modified">
             <input type="hidden"  name="status" value="Not launched">
-            <input type="hidden" id="number_evaluers" name="number_evaluers" value="1">
+            <input type="hidden" id="number_evaluers" name="number_evaluers" value="0">
 
 {{# each items }}
             <input type="hidden"  name="evaluation_id" value={{this._id}}>
@@ -63,7 +64,7 @@
                     OR
                     <br>
                     <br>
-                    <p><input type="file" name="xlfile" id="xlf" value="Browse your computer"></p>
+                    <p><input type="file" name="xlfile" id="xlf"></p>
                     <br>
                     <br>
                     <div align="left">Accepted data format:</div>
@@ -97,7 +98,7 @@
         <div class="col-md-2"><div align="center">ACTION</div></div>
     </div>
     <div class="row" id="start-msg">
-        <div align="center">Add all the persons who should be asked for feedback.<input type="hidden" required></div>
+        <div align="center">Add all the persons who should be asked for feedback.</div>
     </div>
 
 

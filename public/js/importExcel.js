@@ -151,6 +151,7 @@ function process_wb(wb) {
         );
     }
 
+    document.getElementById("number_evaluers").value = counter;
     document.getElementById("start-msg").remove();
     $('#import-modal').modal('hide');
 }
