@@ -1,7 +1,4 @@
 const Survey = require('../models/Survey');
-var ProgressBar = require('progressbar.js');
-
-
 
 
 /**
