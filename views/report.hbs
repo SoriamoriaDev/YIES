@@ -195,7 +195,7 @@ doc.fontSize(15)
 
 // Strength box
 doc.lineJoin('round')
-        .rect(100, yStrength, 450, 160) //y = 165
+        .rect(100, yStrength, 450, 160)
         .lineWidth(1)
         .strokeColor("silver")
         .stroke();
@@ -288,7 +288,7 @@ doc.fontSize(10)
 
     // Weakness box
     doc.lineJoin('round')
-            .rect(100, yWeaknesses, 450, 110)
+            .rect(100, yWeaknesses, 450, 160)
             .lineWidth(1)
             .strokeColor('silver')
             .stroke();
@@ -296,7 +296,7 @@ doc.fontSize(10)
     //Weakness title
     doc.fontSize(11)
             .fillColor('grey')
-            .text('ROOM FOR IMPROVEMENTS', 110, yWeaknesses+10);
+            .text('AREAS FOR IMPROVEMENTS', 110, yWeaknesses+10);
 
 </script>
 
@@ -304,7 +304,7 @@ doc.fontSize(10)
     <article class="container-survey">
 
         <div class="row-heading">
-            <div class="col-md-4">ROOM FOR IMPROVEMENTS</div>
+            <div class="col-md-4">AREAS FOR IMPROVEMENTS</div>
             <div class="col-md-8"></div>
         </div>
         {{#each weak}}
@@ -338,20 +338,20 @@ doc.fontSize(10)
     //Text for each competence
     doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[0]}}', 110, yWeaknesses+40+{{@index}}*20);
+            .text('{{[0]}}', 110, yWeaknesses+50+{{@index}}*35);
 
     //Grey bg bar
     doc.lineCap('round')
-            .moveTo(275, yWeaknesses+44+{{@index}}*20)
-            .lineTo(475, yWeaknesses+44+{{@index}}*20)
+            .moveTo(275, yWeaknesses+54+{{@index}}*35)
+            .lineTo(475, yWeaknesses+54+{{@index}}*35)
             .lineWidth(8)
             .fillAndStroke("#d7d7d7")
             .stroke();
 
     //Pink bar for weakness level
     doc.lineCap('round')
-            .moveTo(275, yWeaknesses+44+{{@index}}*20)
-            .lineTo(275+{{[1]}}*2, yWeaknesses+44+{{@index}}*20)
+            .moveTo(275, yWeaknesses+54+{{@index}}*35)
+            .lineTo(275+{{[1]}}*2, yWeaknesses+54+{{@index}}*35)
             .lineWidth(8)
             .fillAndStroke("#f800a9")
             .stroke();
@@ -359,7 +359,7 @@ doc.fontSize(10)
     //Text for average score
     doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[2]}}', 510, yWeaknesses+40+{{@index}}*20);
+            .text('{{[2]}}', 510, yWeaknesses+50+{{@index}}*35);
 
 
 </script>
@@ -371,6 +371,12 @@ doc.fontSize(10)
     </article>
 
 <script>
+
+doc.fontSize(10)
+        .fillColor('blue')
+        .text('WWW.YIES.CO', 100, yFooter, {align : 'center'})
+        .link(300, yFooter, 70, 20, 'http://www.yies.co/');
+
 
 doc.fontSize(10)
         .fillColor('grey')
@@ -484,6 +490,11 @@ doc.fontSize(25)
 </div>
 
 <script>
+
+    doc.fontSize(10)
+            .fillColor('blue')
+            .text('WWW.YIES.CO', 100, yFooter, {align : 'center'})
+            .link(300, yFooter, 70, 20, 'http://www.yies.co/');
 
     doc.fontSize(10)
             .fillColor('grey')
