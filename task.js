@@ -6,10 +6,10 @@ function sendEmail() {
         console.log("Starting to connect...");
 
         const transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'Mailgun',
         auth: {
-            user: "soriamoriaapp@gmail.com",
-            pass: "123456Soria"
+            user: "postmaster@mg.yies.co",
+            pass: "2365dce523d84b39dad54ede5a89dde9"
         }
         });
 

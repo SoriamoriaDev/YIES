@@ -39,7 +39,7 @@
     {{# each default_questions}}
             <div class="row" id="row{{@index}}">
                 <div class="col-md-2"><input class="index" type="text" name="index" id="index{{@index}}" value=""></div>
-                <div class="col-md-8"><input class="input-long" type="text" name="question" value="{{this}}" required></div>
+                <div class="col-md-8"><input class="input-long" type="text" maxlength="27" name="question" value="{{this}}" required ></div>
                 <div class="col-md-2"><div align="center"><a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a></div></div>
             </div>
 
