@@ -10,7 +10,7 @@ const User = require('../models/User');
  */
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect('/dashboard');
   }
   res.render('account/login', {
     title: 'Login'
@@ -53,7 +53,7 @@ exports.postLogin = (req, res, next) => {
  */
 exports.logout = (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('www.yies.co');
 };
 
 /**
@@ -62,7 +62,7 @@ exports.logout = (req, res) => {
  */
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect('/dashboard');
   }
   res.render('account/signup', {
     title: 'Create Account'
@@ -110,7 +110,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.redirect('/dashboard');
       });
     });
   });
@@ -283,10 +283,10 @@ exports.postReset = (req, res, next) => {
     },
     function sendResetPasswordEmail(user, done) {
       const transporter = nodemailer.createTransport({
-        service: 'Gmail',
+        service: 'Mailgun',
         auth: {
-          user: "soriamoriaapp@gmail.com",
-          pass: "123456Soria"
+          user: "postmaster@mg.yies.co",
+          pass: "2365dce523d84b39dad54ede5a89dde9"
         }
 
         /*     service: 'SendGrid',
@@ -369,10 +369,10 @@ exports.postForgot = (req, res, next) => {
         auth: {
           user: process.env.SENDGRID_USER,
           pass: process.env.SENDGRID_PASSWORD   */
-        service: 'Gmail',
+        service: 'Mailgun',
         auth: {
-          user: "soriamoriaapp@gmail.com",
-          pass: "123456Soria"
+          user: "postmaster@mg.yies.co",
+          pass: "2365dce523d84b39dad54ede5a89dde9"
         }
       });
       const mailOptions = {
