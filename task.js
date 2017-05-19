@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const nodemailer = require('nodemailer');
 
 
@@ -27,7 +29,7 @@ function sendEmail() {
             to: 'maxime.fontanille@gmail.com',
             from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
             subject: 'Scheduled email works',
-            text: 'Cool' +'\n\n\n' + "/survey?permalink="
+            text: 'Cool it works!' +'\n\n\n'
         };
 
         transporter.sendMail(mailOptions, (err) => {

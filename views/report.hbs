@@ -514,10 +514,13 @@ doc.fontSize(25)
         });
     });
 
+{{#each info}}
+
     function printPDF() {
-        download( blob, "report.pdf", "pdf");
+        download( blob, "YIES report - {{[1]}} {{[2]}}", "pdf");
     }
 
+{{/each}}
 
 </script>
 
