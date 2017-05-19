@@ -53,7 +53,7 @@ exports.postLogin = (req, res, next) => {
  */
 exports.logout = (req, res) => {
   req.logout();
-  res.redirect('www.yies.co');
+  res.redirect('http://www.yies.co');
 };
 
 /**

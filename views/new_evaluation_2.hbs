@@ -76,6 +76,7 @@
             $(this).closest('.row').remove();
             counter--;
             console.log("Counter total: " + counter);
+            document.getElementById("number_questions").value = counter;
 
             // UPDATE DYNAMICALLY ALL NUMBERS
             $('.index').each(function(i) {

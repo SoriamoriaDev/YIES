@@ -1,10 +1,10 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-  service: 'SendGrid',
+  service: 'Mailgun',
   auth: {
-    user: process.env.SENDGRID_USER,
-    pass: process.env.SENDGRID_PASSWORD
+    user: "postmaster@mg.yies.co",
+    pass: "2365dce523d84b39dad54ede5a89dde9"
   }
 });
 
@@ -25,7 +25,8 @@ exports.getContact = (req, res) => {
 exports.postContact = (req, res) => {
   req.assert('name', 'Name cannot be blank').notEmpty();
   req.assert('email', 'Email is not valid').isEmail();
-  req.assert('message', 'Message cannot be blank').notEmpty();
+  req.assert('location', 'Bug location cannot be blank').notEmpty();
+  req.assert('description', 'Bug description cannot be blank').notEmpty();
 
   const errors = req.validationErrors();
 
@@ -35,10 +36,12 @@ exports.postContact = (req, res) => {
   }
 
   const mailOptions = {
-    to: 'maxime.fontanille@gmail.com',
-    from: `${req.body.name} <${req.body.email}>`,
-    subject: 'Contact Form | YIES prototype',
-    text: req.body.message
+    to: 'max77869506+lnds636trjdwu6jgpvgs@boards.trello.com',
+    //from: `${req.body.name} <${req.body.email}>`,
+    subject: req.body.location,
+    text:  "Name : " + req.body.name + '\n\n' +
+            "Email : " + req.body.email + '\n\n' +
+            "Bug description : " + req.body.description
   };
 
   transporter.sendMail(mailOptions, (err) => {
@@ -46,7 +49,7 @@ exports.postContact = (req, res) => {
       req.flash('errors', { msg: err.message });
       return res.redirect('/contact');
     }
-    req.flash('success', { msg: 'Email has been sent successfully!' });
+    req.flash('success', { msg: 'Bug report has been sent successfully. Thanks!' });
     res.redirect('/contact');
   });
 };
