@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+const sendEmailNewRegister = require('../sendEmailNewRegister');
+
 
 /**
  * GET /login
@@ -110,6 +112,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
+        sendEmailNewRegister();
         res.redirect('/dashboard');
       });
     });
