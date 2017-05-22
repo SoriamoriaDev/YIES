@@ -45,9 +45,7 @@ const reportController = require('./controllers/report');
 const dashboardController = require('./controllers/dashboard');
 const new_evaluationController = require('./controllers/new_evaluation');
 const sandboxController = require('./controllers/sandbox');
-const thanks_feedbackController = require('./controllers/thanks_feedback');
-const proController = require('./controllers/pro');
-const pricingController = require('./controllers/pricing');
+const static_pagesController = require('./controllers/static_pages');
 
 /**
  * API keys and Passport configuration.
@@ -166,10 +164,8 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/sandbox', sandboxController.getSandbox);
 app.post('/sandbox', sandboxController.postSandbox);
-app.get('/thanks_feedback', thanks_feedbackController.getThanks_feedback);
-app.get('/pro', proController.getPro);
-app.post('/pro', proController.postPro);
-app.get('/pricing', pricingController.getPricing);
+app.get('/thanks_feedback', static_pagesController.getThanks_feedback);
+app.get('/no_record_found', static_pagesController.getNo_record_found);
 
 /**
  * API examples routes.
