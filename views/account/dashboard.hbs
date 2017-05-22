@@ -1,4 +1,6 @@
 
+<script src="/js/moment.js"></script>
+
 <div class="container-800">
 <h1>{{ title }}</h1>
     <br>
@@ -12,17 +14,19 @@
 
     <div class="row-heading">
         <div class="col-md-2">DATE</div>
-        <div class="col-md-5">CAMPAIGN</div>
-        <div class="col-md-3">STATUS</div>
+        <div class="col-md-4">CAMPAIGN</div>
+        <div class="col-md-2">DEADLINE</div>
+        <div class="col-md-2">STATUS</div>
         <div class="col-md-2"><div align="center">ACTION</div></div>
     </div>
     {{#if items}}
     {{# each items }}
     <div class="row">
-        <input type="hidden" id="deadline{{@index}}" value="{{this.deadline}}">
+        <!--<input type="hidden" id="deadline{{@index}}" value="{{this.deadline}}">-->
         <div class="col-md-2">{{this.creation_date}}</div>
-        <div class="col-md-5">{{ this.campaign }}</div>
-        <div class="col-md-3"><input type="text" id="status{{@index}}" value="{{ this.status }}" readonly></div>
+        <div class="col-md-4">{{ this.campaign }}</div>
+        <div class="col-md-2"><input type="text" id="deadline{{@index}}" value="{{ this.deadline }}" readonly></div>
+        <div class="col-md-2"><input type="text" id="status{{@index}}" value="{{ this.status }}" readonly></div>
         <div class="col-md-2">
             <div align="center">
                 <!--<a class="action-icons"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>&nbsp &nbsp-->
@@ -33,6 +37,9 @@
     </div>
         <script>
 
+
+
+
             // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
             var deadline = $("#deadline{{@index}}").val();
             console.log(deadline);
@@ -40,10 +47,18 @@
             console.log("Deadline : " + deadline2);
             var maintenant = +new Date();
             console.log("Maintenant: "+ maintenant);
+
             if( deadline2 < maintenant ){
                 document.getElementById("report_button{{@index}}").style = "";
                 document.getElementById("status{{@index}}").value = "Completed";
             }
+
+            // MAKE DEADLINE DATE FORMAT SHORTER
+            var x = document.getElementById("deadline{{@index}}").value;
+            var y = moment(x).format('DD/MM/YY HH:mm');
+            console.log(y);
+            document.getElementById("deadline{{@index}}").value = y;
+            //document.getElementById("deadline{{@index}}").value = x.slice(0,21);
 
         </script>
 

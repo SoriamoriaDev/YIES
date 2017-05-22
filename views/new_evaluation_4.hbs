@@ -59,9 +59,11 @@
 <script>
     document.getElementById("last_modified").value = Date.now();
 
+    // MAKE DEADLINE DATE FORMAT SHORTER
     var x = document.getElementById("date").value;
     document.getElementById("date").value = x.slice(0,21);
 
+    // SHOW TOTAL NUMBERS OF EVALUERS
     document.getElementById("evaluers").value = "0 of {{eval}}";
 
     // HIDE LAUNCH BUTTON AFTER SENDING
