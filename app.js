@@ -166,6 +166,7 @@ app.get('/sandbox', sandboxController.getSandbox);
 app.post('/sandbox', sandboxController.postSandbox);
 app.get('/thanks_feedback', static_pagesController.getThanks_feedback);
 app.get('/no_record_found', static_pagesController.getNo_record_found);
+app.get('/tutorial', static_pagesController.getTutorial);
 
 /**
  * API examples routes.

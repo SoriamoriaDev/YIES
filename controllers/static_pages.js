@@ -15,3 +15,11 @@ exports.getNo_record_found = (req, res) => {
 exports.getThanks_feedback = (req, res, next) => {
   res.render('thanks_feedback', {title: 'Thank you'});
 };
+
+/**
+ * GET /
+ * Tutorial video.
+ */
+exports.getTutorial = (req, res, next) => {
+  res.render('tutorial', {title: 'Tutorial video'});
+};
