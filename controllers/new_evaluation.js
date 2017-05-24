@@ -1,6 +1,7 @@
 const Evaluation = require('../models/Evaluation');
 const Survey = require('../models/Survey');
 const nodemailer = require('nodemailer');
+const moment = require('moment');
 
 
 /**
@@ -230,14 +231,19 @@ const transporter = nodemailer.createTransport({
         /**  loop for sending email */
     for (i=0 ; i < allevaluers.length ; i++) {
 
+        var d = evaluation.deadline;
+        var lastDay = moment(d).format('DD/MM/YY HH:mm');
+
         const mailOptions = {
             to: evaluation.evaluers[i].email,
             from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
-            subject: 'Feedback needed on ' + evaluation.first_name + ' performance',
+            subject: 'Feedback needed on ' + evaluation.first_name + ' ' + evaluation.last_name + ' performance',
             text: 'Hello ' + evaluation.evaluers[i].first_name + ',' + '\n\n' +
                 evaluation.intro_text + '\n\n' +
-                "Click on the link below:" + '\n' +
-                process.env.APP_URL + "/survey?permalink=" + evaluation._id + i
+                "Click on the link below, to share you feedback:" + '\n' +
+                process.env.APP_URL + "/survey?permalink=" + evaluation._id + i + '\n\n' +
+                "The deadline for answering is the:" + '\n' +
+                lastDay
         };
 
         transporter.sendMail(mailOptions, (err) => {
