@@ -29,8 +29,9 @@ exports.getReport = (req, res, next) => {
         var report1 = []; //Competences + all scores
         var report2 = []; //Competences + averages + #ratings
         var information = []; //Info
+        var peers = []; // List of all peers
 
-
+        /*** ADDING THE INFORMATION FIELDS */
         var first_name = doc[0].first_name;
         var last_name = doc[0].last_name;
         var job_title = doc[0].job_title;
@@ -45,6 +46,7 @@ exports.getReport = (req, res, next) => {
         information[0].push(department);
         information[0].push(campaign);
 
+        console.log("Info : " + information);
 
         /*** POPULATE REPORTS WITH COMPETENCES */
         competences.forEach(function (name) {
@@ -54,6 +56,17 @@ exports.getReport = (req, res, next) => {
             report2.push([name]);
         });
 
+        console.log("Report 1 with competences only : " + report1);
+
+        /*** POPULATE PEERS FROM EACH SURVEY  */
+        for (i = 0; i < doc.length; i++) {
+            var y = doc[i];
+            if (y.open == false) {
+                peers.push(y.evaluer);
+            }
+        }
+        //console.log("Peers : " + peers);
+
         /*** POPULATE REPORTS WITH SCORES FROM EACH SURVEY */
         for (i = 0; i < doc.length; i++) {
             var y = doc[i];
@@ -61,7 +74,7 @@ exports.getReport = (req, res, next) => {
                 report1[z].push(y.scores[z]);
             }
         }
-
+        console.log("Report 1 : " + report1);
 
         /*** CALCULATING AVERAGES AND #RATINGS */
         for (i = 0; i < competences.length; i++) {
@@ -84,49 +97,49 @@ exports.getReport = (req, res, next) => {
             report2[i].push(x);
         }
 
-        console.log("INFO file:" + information);
-        console.log(report2);
+        //  console.log("INFO file:" + information);
+        // console.log(report2);
 
         /*** SORTING 3 BEST AND 3 WORSE RATINGS */
 
         var report3 = report2.slice(0);
-        console.log("Report after slice: " + report3);
+        // console.log("Report after slice: " + report3);
 
         // FILTER OUT ENTRIES WITH NaN
         var report3 = report3.filter(function (item) {
             return item[1] !== "NaN";
         });
-        console.log("No more entries with NaN: " + report3);
+        // console.log("No more entries with NaN: " + report3);
 
         // SORT BEST TO WORSE
         report3.sort(function (a, b) {
             return a[1] < b[1] ? 1 : -1;
         });
 
-        console.log("Sorted by strongest: " + report3);
+        // console.log("Sorted by strongest: " + report3);
 
         // PUSH 3 BEST IN NEW ARRAY
         var strength = [];
         strength.push(report3[0]);
         strength.push(report3[1]);
         strength.push(report3[2]);
-        console.log(strength);
+        // console.log(strength);
 
         // SORT WORSE TO BEST
         report3.sort(function (a, b) {
             return a[1] > b[1] ? 1 : -1;
         });
 
-        console.log("Sorted by weakest: " + report3);
+        // console.log("Sorted by weakest: " + report3);
 
         // PUSH 3 WORSE IN NEW ARRAY
         var weakness = [];
         weakness.push(report3[0]);
         weakness.push(report3[1]);
         weakness.push(report3[2]);
-        console.log(weakness);
+        // console.log(weakness);
 
-        res.render('report', {title: 'Report', items: report2, info: information, strong: strength, weak: weakness});
+        res.render('report', {title: 'Report', items: report2, info: information, strong: strength, weak: weakness, evaluers: peers});
     }
         });
 };

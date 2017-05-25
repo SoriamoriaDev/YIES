@@ -36,7 +36,7 @@ var stream = doc.pipe(blobStream());
 </script>
 
 <div class="container-800">
-    <div id="toprint">
+
     <h1>{{ title }} {{#each info}} - {{[6]}}</h1>
 
 <script>
@@ -482,10 +482,28 @@ doc.fontSize(25)
 </script>
 
     {{/each}}
+
     </article>
 
+        </br>
+        <article class="container-survey">
 
-    </div>
+            <div class="row-heading">
+                <div class="col-md-4">EVALUER'S NAME</div>
+                <div class="col-md-4">JOB TITLE</div>
+                <div class="col-md-4">COMPANY</div>
+            </div>
+            {{#each evaluers}}
+
+                <div class="row">
+                    <div class="col-md-4">{{first_name}} {{last_name}}</div>
+                    <div class="col-md-4">{{job_title}}</div>
+                    <div class="col-md-4">{{company}}</div>
+                </div>
+
+
+            {{/each}}
+    </article>
 
 </div>
 
