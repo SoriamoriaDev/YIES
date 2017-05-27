@@ -10,7 +10,7 @@ const Survey = require('../models/Survey');
 
 exports.getReport = (req, res, next) => {
     var id = req.query.evaluation_id;
-    console.log(id);
+    //console.log(id);
     Survey.find({'evaluation_id': id}, function (err, doc) {
     if (err) {
         console.log('error, no entry found');
@@ -23,7 +23,7 @@ exports.getReport = (req, res, next) => {
     else {
 
 
-        console.log(doc);
+        //console.log(doc);
         var competences = doc[0].questions;
 
         var report1 = []; //Competences + all scores
@@ -56,7 +56,6 @@ exports.getReport = (req, res, next) => {
             report2.push([name]);
         });
 
-        console.log("Report 1 with competences only : " + report1);
 
         /*** POPULATE PEERS FROM EACH SURVEY  */
         for (i = 0; i < doc.length; i++) {
@@ -74,7 +73,6 @@ exports.getReport = (req, res, next) => {
                 report1[z].push(y.scores[z]);
             }
         }
-        console.log("Report 1 : " + report1);
 
         /*** CALCULATING AVERAGES AND #RATINGS */
         for (i = 0; i < competences.length; i++) {

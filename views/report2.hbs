@@ -7,14 +7,13 @@
 <script src="/js/base64pics.js"></script>
 
 <script>
-
 // create a PDF document and pipe to a blob
 var doc = new PDFDocument({
     margins : {
-        top: 20,
-        bottom: 20,
-        left: 20,
-        right: 20
+        top: 50,
+        bottom: 50,
+        left: 100,
+        right: 50
     },
     info: {
         Title: 'Report',
@@ -25,123 +24,14 @@ var doc = new PDFDocument({
 }
 });
 
-
-var xTitle = 20;
-var xInfo = 20;
-var xCompetences = 150;
-var xStrength = 10;
-var xWeaknesses = 10;
-var xFooter = 0;
-var xEvaluers = 10;
-
-var yTitle = 20;
-var yInfo = 60;
+var yTitle = 50;
+var yInfo = 110;
+var yStrength = 270;
+var yWeaknesses = 470;
+var yFooter = 730;
 var yCompetences = 150;
-var yStrength = 150;
-var yWeaknesses = 515;
-var yFooter = 760;
-var yEvaluers = 80;
 
 var stream = doc.pipe(blobStream());
-
-//**---------------------------------------RULERS----------------------------**
-// ** TOP RULER 0 to 520 **
-//Text for test
-    /*
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('0', 0, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('20', 20, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('100', 100, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('200', 200, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('300', 300, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('400', 400, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('500', 500, 0);
-
-//Text for test
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('|', 510, 0, {align: "right"});
-*/
-// ** LEFT RULER 0 to 520 **
-//Text for test
-/*
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('20', 0, 20);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('50', 0, 50);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('100', 0, 100);
-
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('150', 0, 150);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('200', 0, 200);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('250', 0, 250);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('300', 0, 300);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('350', 0, 350);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('400', 0, 400);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('450', 0, 450);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('500', 0, 500);
-
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('550', 0, 550);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('600', 0, 600);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('650', 0, 650);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('700', 0, 700);
-doc.fontSize(10)
-        .fillColor('grey')
-        .text('750', 0, 750);
-*/
-//**---------------------------------------RULERS----------------------------**
 
 </script>
 
@@ -150,15 +40,111 @@ doc.fontSize(10)
     <h1>{{ title }} {{#each info}} - {{[6]}}</h1>
 
 <script>
+/*
+//**---------------------------------------RULERS----------------------------**
+// ** TOP RULER 0 to 520 **
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('0', 0, 0);
 
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('20', 20, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('100', 100, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('200', 200, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('300', 300, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('400', 400, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('500', 500, 0);
+
+    //Text for test
+    doc.fontSize(10)
+            .fillColor('grey')
+            .text('|', 510, 0, {align: "right"});
+
+// ** LEFT RULER 0 to 520 **
+//Text for test
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('20', 50, 20);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('50', 50, 50);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('100', 50, 100);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('150', 50, 150);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('200', 50, 200);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('250', 50, 250);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('300', 50, 300);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('350', 50, 350);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('400', 50, 400);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('450', 50, 450);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('500', 50, 500);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('550', 50, 550);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('600', 50, 600);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('650', 50, 650);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('700', 50, 700);
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('720', 50, 720);
+
+//**---------------------------------------RULERS----------------------------**
+*/
 
 //YIES logo
-doc.image(yiesLogo, 15, yTitle,  {height: 20});
+doc.image(yiesLogo, 95, yTitle,  {height: 20});
 
 // Title report
 doc.fontSize(25)
         .fillColor('grey')
-        .text('Report - {{[6]}}', 125, yTitle+1);
+        .text('Report overview', 205, yTitle+1);
+
 
 </script>
 
@@ -177,25 +163,20 @@ doc.fontSize(25)
 
 <script>
 
-doc.image(profilePic, 50, yInfo);
+doc.image(profilePic, 100, yInfo);
 
 doc.fontSize(10)
-        .text('Name', xCompetences+40, yInfo+3);
+        .text('Name: {{[1]}} {{[2]}}', 190, yInfo+3);
 doc.fontSize(10)
-        .text('Position', xCompetences+40, yInfo+23);
+        .text('Position: {{[3]}}', 190, yInfo+23);
 doc.fontSize(10)
-        .text('Department', xCompetences+40, yInfo+43);
+        .text('Department: {{[5]}}', 190, yInfo+43);
 doc.fontSize(10)
-        .text('Company', xCompetences+40, yInfo+63);
+        .text('Company: {{[4]}}', 190, yInfo+63);
 
-doc.fontSize(12)
-        .text('{{[1]}} {{[2]}}', xCompetences+150, yInfo+3);
-doc.fontSize(12)
-        .text('{{[3]}}', xCompetences+150, yInfo+23);
-doc.fontSize(12)
-        .text('{{[5]}}', xCompetences+150, yInfo+43);
-doc.fontSize(12)
-        .text('{{[4]}}', xCompetences+150, yInfo+63);
+doc.fontSize(15)
+        .fillColor('grey')
+        .text('"{{[6]}}"', 105, yInfo+110, {align: 'center'});
 
 
 </script>
@@ -214,15 +195,15 @@ doc.fontSize(12)
 
 // Strength box
 doc.lineJoin('round')
-        .rect(xStrength, yStrength, 160, 355)
-        .lineWidth(0.1)
+        .rect(100, yStrength, 450, 160)
+        .lineWidth(1)
         .strokeColor("silver")
         .stroke();
 
 //Strength title
 doc.fontSize(11)
         .fillColor('grey')
-        .text('STRENGTHS', xStrength+10, yStrength+10);
+        .text('STRENGTH', 110, yStrength+10);
 
 </script>
 
@@ -279,22 +260,21 @@ doc.fontSize(11)
 
 //** STRENGTH **//
 
-//Green circle for each Strength
-doc.circle(xStrength+80, yStrength+70+{{@index}}*110, 0.4*{{[1]}})
+    //Green circle for each Strength
+doc.circle(180+{{@index}}*150, yStrength+75, 0.4*{{[1]}})
         .lineWidth(7)
         .strokeColor("#3cb878")
         .stroke();
 
-//Score for each Strength Circle
+    //Score for each Strength Circle
 doc.fontSize(20)
         .fillColor('grey')
-        .text('{{[2]}}', xStrength+67, yStrength+63+{{@index}}*110);
+        .text('{{[2]}}', 166+{{@index}}*150, yStrength+66);
 
 //Text for each Strength
-doc.fontSize(9.7)
+doc.fontSize(10)
         .fillColor('grey')
-        .text('{{[0]}}', xStrength+79-{{[0].length}}*2.3, yStrength+113+{{@index}}*110);
-
+        .text('{{[0]}}', 180+{{@index}}*150-{{[0].length}}*2.3, yStrength+130);
 
 </script>
 
@@ -308,19 +288,15 @@ doc.fontSize(9.7)
 
     // Weakness box
     doc.lineJoin('round')
-            .rect(xWeaknesses, yWeaknesses, 160, 210)
-            .lineWidth(0.1)
+            .rect(100, yWeaknesses, 450, 160)
+            .lineWidth(1)
             .strokeColor('silver')
             .stroke();
 
-    //Weakness title 1/2
+    //Weakness title
     doc.fontSize(11)
             .fillColor('grey')
-            .text('AREAS FOR', xWeaknesses+10, yWeaknesses+10);
-    //Weakness title 2/2
-    doc.fontSize(11)
-            .fillColor('grey')
-            .text('IMPROVEMENTS', xWeaknesses+10, yWeaknesses+25);
+            .text('AREAS FOR IMPROVEMENTS', 110, yWeaknesses+10);
 
 </script>
 
@@ -360,30 +336,30 @@ doc.fontSize(9.7)
     //** BARS FOR WEAKNESS **//
 
     //Text for each competence
-    doc.fontSize(9.7)
+    doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[0]}}', xWeaknesses+20, yWeaknesses+60+{{@index}}*45);
+            .text('{{[0]}}', 110, yWeaknesses+50+{{@index}}*35);
 
     //Grey bg bar
     doc.lineCap('round')
-            .moveTo(xWeaknesses+20, yWeaknesses+80+{{@index}}*45)
-            .lineTo(xWeaknesses+120, yWeaknesses+80+{{@index}}*45)
-            .lineWidth(7)
+            .moveTo(275, yWeaknesses+54+{{@index}}*35)
+            .lineTo(475, yWeaknesses+54+{{@index}}*35)
+            .lineWidth(8)
             .fillAndStroke("#d7d7d7")
             .stroke();
 
     //Pink bar for weakness level
     doc.lineCap('round')
-            .moveTo(xWeaknesses+20, yWeaknesses+80+{{@index}}*45)
-            .lineTo(xWeaknesses+20+{{[1]}}, yWeaknesses+80+{{@index}}*45)
-            .lineWidth(7)
+            .moveTo(275, yWeaknesses+54+{{@index}}*35)
+            .lineTo(275+{{[1]}}*2, yWeaknesses+54+{{@index}}*35)
+            .lineWidth(8)
             .fillAndStroke("#f800a9")
             .stroke();
 
     //Text for average score
-    doc.fontSize(9.7)
+    doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[2]}}', xWeaknesses+129, yWeaknesses+76+{{@index}}*45);
+            .text('{{[2]}}', 510, yWeaknesses+50+{{@index}}*35);
 
 
 </script>
@@ -396,34 +372,50 @@ doc.fontSize(9.7)
 
 <script>
 
-    var yComp = 540 / {{items.length}};
+doc.fontSize(10)
+        .fillColor('blue')
+        .text('WWW.YIES.CO', 100, yFooter, {align : 'center'})
+        .link(300, yFooter, 70, 20, 'http://www.yies.co/');
+
+
+doc.fontSize(10)
+        .fillColor('grey')
+        .text('1 / 2', 530, yFooter);
+
+doc.addPage();
+
+//YIES logo
+doc.image(yiesLogo, 95, yTitle,  {height: 20});
+
+// Title report
+doc.fontSize(25)
+        .fillColor('grey')
+        .text('All competences in detail', 205, yTitle+1);
 
 // All competences box
     doc.lineJoin('round')
-            .moveTo(xCompetences+30, yCompetences)
-            .lineTo(600, yCompetences)
-            .lineTo(600, yCompetences+35+{{items.length}}*yComp)
-            .lineTo(xCompetences+30, yCompetences+35+{{items.length}}*yComp)
-            .lineTo(xCompetences+30,yCompetences)
-            .lineWidth(0.1)
+            .moveTo(100, yCompetences)
+            .lineTo(550, yCompetences)
+            .lineTo(550, yCompetences+35+{{items.length}}*20)
+            .lineTo(100, yCompetences+35+{{items.length}}*20)
+            .lineTo(100,yCompetences)
+            .lineWidth(1)
             .strokeColor('silver')
             .stroke();
 
     //All competences titles
     doc.fontSize(11)
             .fillColor('grey')
-            .text('COMPETENCE', xCompetences+40, yCompetences+10);
+            .text('COMPETENCE', 110, yCompetences+10);
     doc.fontSize(11)
             .fillColor('grey')
-            .text('LEVEL', xCompetences+205, yCompetences+10);
+            .text('LEVEL', 271, yCompetences+10);
     doc.fontSize(11)
             .fillColor('grey')
-            .text('SCORE', xCompetences+330, yCompetences+10);
+            .text('SCORE', 430, yCompetences+10);
     doc.fontSize(11)
             .fillColor('grey')
-            .text('#RATINGS', xCompetences+388, yCompetences+10);
-
-
+            .text('#RATINGS', 490, yCompetences+10);
 
 </script>
 
@@ -452,27 +444,27 @@ doc.fontSize(9.7)
 
         </script>
 
-    <script>
+<script>
 
     //** ALL COMPETENCES **//
 
     //Text for each competence
     doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[0]}}', xCompetences+40, yCompetences+40+{{@index}}*yComp);
+            .text('{{[0]}}', 110, yCompetences+40+{{@index}}*20);
 
     //Grey bar
     doc.lineCap('round')
-            .moveTo(xCompetences+205, yCompetences+44+{{@index}}*yComp)
-            .lineTo(xCompetences+305, yCompetences+44+{{@index}}*yComp)
+            .moveTo(275, yCompetences+44+{{@index}}*20)
+            .lineTo(375, yCompetences+44+{{@index}}*20)
             .lineWidth(7)
             .fillAndStroke("#d7d7d7")
             .stroke();
 
     //Green bar
     doc.lineCap('round')
-            .moveTo(xCompetences+205, yCompetences+44+{{@index}}*yComp)
-            .lineTo(xCompetences+205+{{[1]}}, yCompetences+44+{{@index}}*yComp)
+            .moveTo(275, yCompetences+44+{{@index}}*20)
+            .lineTo(275+{{[1]}}, yCompetences+44+{{@index}}*20)
             .lineWidth(7)
             .fillAndStroke("#3cb878")
             .stroke();
@@ -480,74 +472,18 @@ doc.fontSize(9.7)
     //Text for average score
     doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[2]}}', xCompetences+343, yCompetences+40+{{@index}}*yComp);
+            .text('{{[2]}}', 443, yCompetences+40+{{@index}}*20);
 
     //Text for #ratings
     doc.fontSize(10)
             .fillColor('grey')
-            .text('{{[3]}}', xCompetences+415, yCompetences+40+{{@index}}*yComp);
+            .text('{{[3]}}', 515, yCompetences+40+{{@index}}*20);
 
-    </script>
+</script>
 
-{{/each}}
-
-    <script>
-
-    doc.fontSize(10)
-            .fillColor('blue')
-            .text('WWW.YIES.CO', xFooter, yFooter, {align : 'center'})
-            .link(300, yFooter, 40, 20, 'http://www.yies.co/');
-
-
-    doc.fontSize(10)
-            .fillColor('grey')
-            .text('1 / 2', 570, yFooter);
-
-    </script>
+    {{/each}}
 
     </article>
-
-        <script>
-        doc.addPage();
-
-        //YIES logo
-        doc.image(yiesLogo, 15, yTitle,  {height: 20});
-
-        // Title report
-        doc.fontSize(25)
-        .fillColor('grey')
-        .text('List of all evaluers', 125, yTitle+1);
-
-
-        // ALL EVALUERS BOX
-
-        var yEval = 20;
-
-        // All evaluers box
-        doc.lineJoin('round')
-                .moveTo(xEvaluers, yEvaluers)
-                .lineTo(600, yEvaluers)
-                .lineTo(600, yEvaluers+35+{{evaluers.length}}*yEval)
-                .lineTo(xEvaluers, yEvaluers+35+{{evaluers.length}}*yEval)
-                .lineTo(xEvaluers,yEvaluers)
-                .lineWidth(0.1)
-                .strokeColor('silver')
-                .stroke();
-
-        //All evaluers titles
-        doc.fontSize(11)
-                .fillColor('grey')
-                .text('EVALUERS NAME', xEvaluers+20, yEvaluers+10);
-        doc.fontSize(11)
-                .fillColor('grey')
-                .text('JOB TITLE', xEvaluers+220, yEvaluers+10);
-        doc.fontSize(11)
-                .fillColor('grey')
-                .text('COMPANY', xEvaluers+420, yEvaluers+10);
-
-    </script>
-
-
 
         </br>
         <article class="container-survey">
@@ -558,7 +494,7 @@ doc.fontSize(9.7)
                 <div class="col-md-4">COMPANY</div>
             </div>
 
-{{#each evaluers}}
+            {{#each evaluers}}
 
                 <div class="row">
                     <div class="col-md-4">{{first_name}} {{last_name}}</div>
@@ -566,45 +502,22 @@ doc.fontSize(9.7)
                     <div class="col-md-4">{{company}}</div>
                 </div>
 
-        <script>
 
-            //** ALL EVALUERS **//
-
-            //Name of each Evaluer
-            doc.fontSize(10)
-                    .fillColor('grey')
-                    .text('{{first_name}} {{last_name}}', xEvaluers+20, yEvaluers+40+{{@index}}*yEval);
-
-            //Text for Job Title
-            doc.fontSize(10)
-                    .fillColor('grey')
-                    .text('{{job_title}}', xEvaluers+220, yEvaluers+40+{{@index}}*yEval);
-
-            //Text for Company
-            doc.fontSize(10)
-                    .fillColor('grey')
-                    .text('{{company}}', xEvaluers+420, yEvaluers+40+{{@index}}*yEval);
-
-        </script>
-
-{{/each}}
-
+            {{/each}}
     </article>
 
 </div>
 
 <script>
 
-
     doc.fontSize(10)
             .fillColor('blue')
-            .text('WWW.YIES.CO', xFooter, yFooter, {align : 'center'})
-            .link(300, yFooter, 40, 20, 'http://www.yies.co/');
-
+            .text('WWW.YIES.CO', 100, yFooter, {align : 'center'})
+            .link(300, yFooter, 70, 20, 'http://www.yies.co/');
 
     doc.fontSize(10)
             .fillColor('grey')
-            .text('2 / 2', 570, yFooter);
+            .text('2 / 2', 530, yFooter);
 
     doc.end();
 
@@ -627,7 +540,6 @@ doc.fontSize(9.7)
     }
 
 {{/each}}
-
 
 </script>
 
