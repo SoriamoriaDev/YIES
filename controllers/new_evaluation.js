@@ -23,6 +23,14 @@ exports.index = (req, res) => {
 
 exports.postNewEvaluation1 = (req, res, next) =>
 {
+    /*
+    // TURN TIMEPICKER DATE INTO VALID ISO DATE FORMAT
+    var deadline = req.body.deadline;
+    //console.log("Deadline to DB : " + deadline);
+    var deadline2 = moment(deadline).toISOString();
+    //console.log("Deadline after Moment and  ISO: " + deadline2);
+*/
+    // CREATE NEW EVALUATION
     var newEvaluation = new Evaluation();
 
     newEvaluation.email = req.body.email;
@@ -109,7 +117,8 @@ exports.postNewEvaluation3 = (req, res, next) => {
     Evaluation.findById(req.body.evaluation_id, (err, evaluation) => {
         if (err) { return next(err); }
         
-        evaluation.last_modified = req.body.last_modified || '';
+        evaluation.last_modified = req.body.last_modified;
+        evaluation.surveys_total = req.body.number_evaluers;
 
         /** RECORD EACH EVALUER DYNAMICALLY*/
         var max = req.body.number_evaluers;
@@ -157,11 +166,11 @@ exports.getNewEvaluation4 = (req, res, next) => {
         }
 
         /** POPULATE NUMBER OF EVALUERS*/
-        console.log(doc);
+        //console.log(doc);
         var evaluers = doc[0].evaluers;
-        console.log(evaluers);
+        //console.log(evaluers);
         var numberEvaluers = evaluers.length;
-        console.log(numberEvaluers);
+        //console.log(numberEvaluers);
 
         res.render('new_evaluation_4', {title:'New Evaluation', items: doc, eval: numberEvaluers});
     }).sort({_id:-1}).limit(1);

@@ -1,4 +1,7 @@
 const Survey = require('../models/Survey');
+const Evaluation = require('../models/Evaluation');
+const nodemailer = require('nodemailer');
+const sendEmailReportReady = require('../sendEmailReportReady.js');
 
 /**
  * GET /
@@ -34,8 +37,35 @@ exports.postSurvey = (req, res, next) => {
       survey.scores.push(req.body.answer[i]);
 
     }
-    
     survey.save();
+
+  });
+
+
+  Evaluation.findById(req.body.age_of_the_captain, (err, evaluation) => {
+    if (err) { return next(err); }
+
+    evaluation.last_modified = Date.now();
+
+    // ADDING ONE UP TO THE SURVEY COUNTER
+    var counter = evaluation.surveys_completed;
+    console.log("Counter before addition : " + counter);
+    counter++;
+    console.log("Counter after addition : " + counter);
+    evaluation.surveys_completed = counter;
+
+    // CHECK IF ALL FEEDBACK GIVEN  AND NOTIFY OWNER
+    if (counter == evaluation.surveys_total){
+        console.log("Yes, Completed is equal to Total");
+
+        // CHANGE STATUS TO COMPLETED
+        evaluation.status = "Completed";
+        // SEND EMAIL TO OWNER
+        sendEmailReportReady(evaluation.email);
+    }
+    evaluation.save();
     res.redirect('/thanks_feedback');
   });
+  
+
 };

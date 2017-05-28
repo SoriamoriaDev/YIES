@@ -13,6 +13,8 @@ const evaluationSchema = new Schema({
   deadline: Date,
   removed: Boolean,
   notification_sent: Boolean,
+  surveys_completed: {type: Number, default: 0 },
+  surveys_total: Number,
 
   email: String,
   first_name: String,

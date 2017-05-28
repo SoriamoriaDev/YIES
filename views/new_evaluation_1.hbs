@@ -1,6 +1,4 @@
 
-
-
 <div class="container-800">
     <h1>{{ title }}</h1>
 
@@ -47,14 +45,16 @@
 
 
 <script>
+
     document.getElementById("last_modified").value = Date.now();
 
-    $( document ).ready(function() {
-        $('#datetimepicker').datetimepicker(
-                //{format:'d/m/Y H:i'}
-        );
-    });
-
+        $( document ).ready(function() {
+            $('#datetimepicker').datetimepicker(
+                    //{format:'d/m/Y H:i'}
+                    //{format:'d/m/Y H:i'}
+                    //{format:'d/m/Y\\TH:m:s'}
+            );
+        });
 </script>
 
 

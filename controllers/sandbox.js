@@ -1,4 +1,7 @@
 const Evaluation = require('../models/Evaluation');
+const nodemailer = require('nodemailer');
+const sendEmailReportReady = require('../sendEmailReportReady.js');
+
 
 /**
  * GET /
@@ -6,31 +9,38 @@ const Evaluation = require('../models/Evaluation');
  */
 exports.getSandbox = (req, res, next) => {
 
-var today = new Date();
-var maintenant = today.toISOString();
-console.log('Date now : ' + maintenant);
-
-    // Search DB for all Evaluation with deadline > date.now
-Evaluation.find({'deadline': { $gt : maintenant} }, function (err, doc) {
+    // Search DB for all Evaluation with status "In process"
+Evaluation.find({'status': "In process" }, function (err, doc) {
     if (err) {
      console.log('error, no entry found');
-     };
+     }
     console.log('Number of records found : ' + doc.length);
-    console.log('All the docs found : ' + doc);
+    //console.log('All the docs found : ' + doc);
 
-// Send email to owner that "Evaluation is completed"
+    // Set status from "In Process" to "Completed" if now.Date is higher than deadline
+    console.log('Date now :' + new Date());
+    var counter = 0;
+    for (i = 0; i < doc.length ; i++) {
 
+        if ( new Date() > doc[i].deadline) {
+            doc[i].status = "Completed";
+            doc[i].notification_sent = true;
+            doc[i].save();
+            console.log('One Changed status!');
+
+            // Send email to owner that "Evaluation is completed"
+            sendEmailReportReady(doc[i].email);
+            counter++;
+        }
+
+    }
+    console.log('Total items changed: ' + counter);
 
     res.redirect('/');
-});//.sort({_id:-1});
+});
 
 };
 
-
-
-
-
-// Change "notification_sent: Boolean" to True
 
 /**
  * 

@@ -39,9 +39,7 @@
 
 
 
-
-            // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
-            var deadline = $("#deadline{{@index}}").val();
+/*          var deadline = $("#deadline{{@index}}").val();
             console.log(deadline);
             var deadline2 = +new Date(deadline);
             console.log("Deadline : " + deadline2);
@@ -52,7 +50,12 @@
                 document.getElementById("report_button{{@index}}").style = "";
                 document.getElementById("status{{@index}}").value = "Completed";
             }
+*/
+            // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
+            if( document.getElementById("status{{@index}}").value == "Completed" ){
 
+                document.getElementById("report_button{{@index}}").style = "";
+            }
             // MAKE DEADLINE DATE FORMAT SHORTER
             var x = document.getElementById("deadline{{@index}}").value;
             var y = moment(x).format('DD/MM/YY HH:mm');

@@ -12,7 +12,7 @@
 {{#each items}}
 {{# if open}}
     <input type="hidden"  name="survey_id" value={{this._id}}>
-
+    <input type="hidden"  name="age_of_the_captain" value={{this.evaluation_id}}>
 
     <p>Hello {{this.evaluer.first_name}}</p>
     <p>{{this.intro_text}}</p>

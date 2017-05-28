@@ -1,9 +1,7 @@
 
-const sendEmail = require('./task.js');
-
 function sayHello() {
-    console.log('Hello');
+    console.log('Hello, lets see if it works...');
 }
 sayHello();
-sendEmail();
 
+app.render("http://localhost:3000/sandbox");

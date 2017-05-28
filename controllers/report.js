@@ -1,4 +1,7 @@
 const Survey = require('../models/Survey');
+const moment = require('moment');
+
+
 
 
 /**
@@ -12,11 +15,14 @@ exports.getReport = (req, res, next) => {
     var id = req.query.evaluation_id;
     //console.log(id);
     Survey.find({'evaluation_id': id}, function (err, doc) {
+
+    console.log("Number of surveys : " + doc.length);
+
     if (err) {
         console.log('error, no entry found');
     }
 
-    if (doc == 0) {
+    if (doc.length < 1) {
         res.render('no_record_found', {title: 'Sorry, no record found'});
     }
 
@@ -38,6 +44,10 @@ exports.getReport = (req, res, next) => {
         var company = doc[0].company;
         var department = doc[0].department;
         var campaign = doc[0].campaign;
+        var reportDate = doc[0].creation_date_ISO;
+
+        var reportDate2 = moment(reportDate).format('DD/MM/YY');
+        
         information.push(["info"]);
         information[0].push(first_name);
         information[0].push(last_name);
@@ -45,6 +55,8 @@ exports.getReport = (req, res, next) => {
         information[0].push(company);
         information[0].push(department);
         information[0].push(campaign);
+        information[0].push(reportDate2);
+
 
         console.log("Info : " + information);
 
