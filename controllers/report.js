@@ -36,6 +36,7 @@ exports.getReport = (req, res, next) => {
         var report2 = []; //Competences + averages + #ratings
         var information = []; //Info
         var peers = []; // List of all peers
+        var comments = [];
 
         /*** ADDING THE INFORMATION FIELDS */
         var first_name = doc[0].first_name;
@@ -68,6 +69,15 @@ exports.getReport = (req, res, next) => {
             report2.push([name]);
         });
 
+
+        /*** POPULATE COMMENTS FROM EACH SURVEY  */
+        for (i = 0; i < doc.length; i++) {
+            var w = doc[i];
+            if (w.evaluer_comment) {
+                comments.push(w.evaluer_comment);
+            }
+        }
+        console.log("Comments : " + comments);
 
         /*** POPULATE PEERS FROM EACH SURVEY  */
         for (i = 0; i < doc.length; i++) {
@@ -149,7 +159,7 @@ exports.getReport = (req, res, next) => {
         weakness.push(report3[2]);
         // console.log(weakness);
 
-        res.render('report', {title: 'Report', items: report2, info: information, strong: strength, weak: weakness, evaluers: peers});
+        res.render('report', {title: 'Report', items: report2, info: information, strong: strength, weak: weakness, evaluers: peers , comments: comments});
     }
         });
 };

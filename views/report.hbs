@@ -505,7 +505,7 @@ doc.fontSize(9.7)
 
     doc.fontSize(10)
             .fillColor('grey')
-            .text('1 / 2', 570, yFooter);
+            .text('1 / 3', 570, yFooter);
 
     </script>
 
@@ -593,7 +593,88 @@ doc.fontSize(9.7)
 
 {{/each}}
 
-    </article>
+        </article>
+
+        <script>
+        doc.fontSize(10)
+                .fillColor('blue')
+                .text('WWW.YIES.CO', xFooter, yFooter, {align : 'center'})
+                .link(300, yFooter, 40, 20, 'http://www.yies.co/');
+
+
+        doc.fontSize(10)
+                .fillColor('grey')
+                .text('2 / 3', 570, yFooter);
+
+        </script>
+
+        <script>
+            doc.addPage();
+
+            //YIES logo
+            doc.image(yiesLogo, 15, yTitle,  {height: 20});
+
+            // Title report
+            doc.fontSize(25)
+                    .fillColor('grey')
+                    .text('All comments', 125, yTitle+1);
+
+
+            // ALL COMMENTS BOX
+
+            var yEval = 20;
+
+            // All comment box
+            doc.lineJoin('round')
+                    .moveTo(xEvaluers, yEvaluers)
+                    .lineTo(600, yEvaluers)
+                    .lineTo(600, yEvaluers+35+{{comments.length}}*yEval)
+                    .lineTo(xEvaluers, yEvaluers+35+{{comments.length}}*yEval)
+                    .lineTo(xEvaluers,yEvaluers)
+                    .lineWidth(0.1)
+                    .strokeColor('silver')
+                    .stroke();
+
+            //All comments title
+            doc.fontSize(11)
+                    .fillColor('grey')
+                    .text('COMMENTS', xEvaluers+20, yEvaluers+10);
+
+        </script>
+
+
+
+        </br>
+        <article class="container-survey">
+
+            <div class="row-heading">
+                <div class="col-md-4">COMMENTS</div>
+            </div>
+
+{{#each comments}}
+
+                <div class="row">
+                    <div class="col-md-12">"{{this}}"</div>
+                </div>
+
+                <script>
+
+                    //** ALL COMMENTS **//
+
+                    //Text of each comment
+                    doc.fontSize(10)
+                            .fillColor('grey')
+                            .text('"{{this}}"', xEvaluers+20, yEvaluers+40+{{@index}}*yEval);
+
+
+                </script>
+
+{{/each}}
+
+        </article>
+
+
+
 
 </div>
 
@@ -608,7 +689,7 @@ doc.fontSize(9.7)
 
     doc.fontSize(10)
             .fillColor('grey')
-            .text('2 / 2', 570, yFooter);
+            .text('3 / 3', 570, yFooter);
 
     doc.end();
 
@@ -627,7 +708,7 @@ doc.fontSize(9.7)
 {{#each info}}
 
     function printPDF() {
-        download( blob, "YIES report - {{[1]}} {{[2]}}", "pdf");
+        download( blob, "YIES report - {{[1]}} {{[2]}} - {{[7]}}", "pdf");
     }
 
 {{/each}}

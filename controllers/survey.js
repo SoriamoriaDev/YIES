@@ -29,6 +29,7 @@ exports.postSurvey = (req, res, next) => {
     if (err) { return next(err); }
 
     survey.last_modified = Date.now();
+    survey.evaluer_comment = req.body.evaluer_comment;
     survey.open = false;
 
     var max_questions = req.body.number_questions;

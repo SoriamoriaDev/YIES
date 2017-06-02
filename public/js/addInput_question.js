@@ -15,7 +15,7 @@ function addInput(divName){
         newdiv.innerHTML =
 
     "<div class='row' id='row"+(counter+1)+"'>" +
-            "<div class='col-md-2'><input type='text' name='index' id='index' value='"+(counter+1)+"'></div>" +
+            "<div class='col-md-2'><input type='text' name='index' id='index' value='"+(counter+1)+"' readonly></div>" +
             "<div class='col-md-8'><input class='input-long' type='text' name='question' value='' placeholder='Add new competence here' required></div>" +
             "<div class='col-md-2'><div id='remove' align='center'><a class='action-icons'><i class='fa fa-trash-o fa-lg' id='delete' aria-hidden='true'></i></a></div></div>" +
             "</div>";

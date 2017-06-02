@@ -39,18 +39,6 @@
 
 
 
-/*          var deadline = $("#deadline{{@index}}").val();
-            console.log(deadline);
-            var deadline2 = +new Date(deadline);
-            console.log("Deadline : " + deadline2);
-            var maintenant = +new Date();
-            console.log("Maintenant: "+ maintenant);
-
-            if( deadline2 < maintenant ){
-                document.getElementById("report_button{{@index}}").style = "";
-                document.getElementById("status{{@index}}").value = "Completed";
-            }
-*/
             // HIDE REPORT BUTTON UNTIL AFTER DEADLINE
             if( document.getElementById("status{{@index}}").value == "Completed" ){
 

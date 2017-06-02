@@ -40,8 +40,13 @@ const surveySchema = new Schema({
 
   scores: {
     type: Array, default: [], Number
-  }
+  },
+
+  evaluer_comment : String
+
 });
+
+
 
 
 
