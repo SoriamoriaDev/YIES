@@ -26,13 +26,6 @@ const evaluationSchema = new Schema({
   evaluee_id: String,
 
   intro_text: String,
-
-  default_questions: {
-    type: Array, default: ["Effectiveness", "Organisational skills", "Work quality", "Punctuality", "Teamwork",
-      "Communication - Verbal", "Communication - Written", "English level", "Managerial potential", "Mentoring potential",
-      "Interpersonal skills", "Willingness to learn", "Sharing knowledge", "Motivating others", "Thinking outside the box",
-      "Adherence to company policy" ]
-  },
   
   questions:{
     type: Array, default:[]

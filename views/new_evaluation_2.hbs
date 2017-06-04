@@ -1,4 +1,4 @@
-
+<script>var counter = 0;</script>
 
 <div class="container-800">
     <h1>{{ title }}</h1>
@@ -17,74 +17,136 @@
 
             <input type="hidden"  name="last_modified" id="last_modified">
             <input type="hidden"  name="status" value="Not launched">
-            <input type="hidden"  name="number_questions" id="number_questions" value="16">
+            <input type="hidden"  name="number_questions" id="number_questions" value="0">
 
 {{# each items }}
             <input type="hidden"  name="evaluation_id" value={{this._id}}>
-        </br>
-        </br>
-        INTRO TEXT:
-    <div class="container-intro_text">
-    <div class="col-evaluer_comment">
-        <textarea name="intro_text" class="form-control" rows="3" autofocus="autofocus" style="margin-right: 90px; padding: 0px;"  placeholder="example: Could you please take two minutes of your time in order to give feedback on my performance during the past 6 month. It would be highly appreciated. " required></textarea>
-    </div>
-    </div>
-        </br>
-        COMPETENCES:
-<div class="container-survey">
-    <div class="row-heading">
-        <div class="col-md-2">NUMBER</div>
-        <div class="col-md-8">TEXT</div>
-        <div class="col-md-2"><div align="center">ACTION</div></div>
-    </div>
-
-    {{# each default_questions}}
-            <div class="row" id="row{{@index}}">
-                <div class="col-md-2"><input class="index" type="text" name="index" id="index{{@index}}" value="" readonly></div>
-                <div class="col-md-8"><input class="input-long" type="text" maxlength="27" name="question" value="{{this}}" required ></div>
-                <div class="col-md-2"><div align="center"><a class="action-icons"><i class="fa fa-trash-o fa-lg" id='delete' aria-hidden="true"></i></a></div></div>
-            </div>
-
-        <script>
-
-            document.getElementById("index{{@index}}").value = {{@index}}+1;
-
-        </script>
-    {{/each}}
-
 {{/each}}
-        <div id="dynamicInput"></div>
+        </br>
+        </br>
 
-    </div>
+        INTRO TEXT:
 
-        <div align="center"><input type="button" class="add-evaluer" value="+ Add" onClick="addInput('dynamicInput');"></div>
+        <textarea name="intro_text" rows="3" class="form-control-Maxi2" autofocus="autofocus"  placeholder="example: Could you please take two minutes of your time in order to give feedback on my performance during the past 6 month. It would be highly appreciated. " required></textarea>
 
-        <div align="right"><button type="submit">Next ></button></div>
+        </br>
+        SELECT A TEMPLATE:
+                <select class="form-control-Maxi" size=1>
+                    <option value="0" selected="selected">- Select a template -</option>
+                    <option value="1" id="std_soft_skills">Standard Soft Skills</option>
+                    <option value="2" id="Administration Assistant">Administration Assistant</option>
+                    <option value="3" id="Software Developer">Software Developer</option>
+                    <option value="4" id="Mechanical Engineer">Mechanical Engineer</option>
+                    <option value="5" id="Offshore Installation Engineer">Offshore Installation Engineer</option>
+                    <option value="6" id="Department Manager">Department Manager</option>
+                    <option value="7" id="President of a nation">President of a Nation</option>
+                    <option value="8" id="General Manager">General Manager</option>
+                    <option value="9" id="Marketing Brand Manager">Marketing Brand Manager</option>
+                </select>
+
+        </br>
+
+    <div id="template_questions"></div>
+
+    <div align="right"><button type="submit">Next ></button></div>
+
 
     </form>
-
 </div>
+
+<script src="/js/insertTemplates.js" language="Javascript" type="text/javascript"></script>
 <script src="/js/addInput_question.js" language="Javascript" type="text/javascript"></script>
 <script type="text/javascript" src="/jquery/jquery.min.js"></script>
-
+<script>//var counter = 0;</script>
 <script>
 
     document.getElementById("last_modified").value = Date.now();
 
+
+    // ADD ONE LINE
+    $(document).ready(function () {
+        $('body').on('click', '#add_one_line', function () {
+
+            addInput('dynamicInput');
+            counter++;
+
+            // UPDATE DYNAMICALLY ALL NUMBERS
+            $('.index').each(function(i) {
+                $(this).val(i+1);
+            });
+
+            console.log("Counter after adding : " + counter);
+            document.getElementById("number_questions").value = counter;
+
+        });
+
+    });
 
     // REMOVE ONE LINE
     $(document).ready(function () {
         $('body').on('click', '#delete', function () {
             $(this).closest('.row').remove();
             counter--;
-            console.log("Counter total: " + counter);
             document.getElementById("number_questions").value = counter;
 
             // UPDATE DYNAMICALLY ALL NUMBERS
             $('.index').each(function(i) {
                 $(this).val(i+1);
             });
+            console.log("Counter after removing : " + counter);
+            document.getElementById("number_questions").value = counter;
         });
     });
+
+    // REPLACE COMPETENCES FROM TEMPLATE
+    $('select').on("change",function(){
+
+        counter = 0;
+
+        if($(this).val()==1) {
+            insertTemplate1('template_questions');
+        }
+
+        if($(this).val()==2) {
+            insertTemplate2('template_questions');
+        }
+
+        if($(this).val()==3) {
+            insertTemplate3('template_questions');
+        }
+
+        if($(this).val()==4) {
+            insertTemplate4('template_questions');
+        }
+
+        if($(this).val()==5) {
+            insertTemplate5('template_questions');
+        }
+
+        if($(this).val()==6) {
+            insertTemplate6('template_questions');
+        }
+
+        if($(this).val()==7) {
+            insertTemplate7('template_questions');
+        }
+
+        if($(this).val()==8) {
+            insertTemplate8('template_questions');
+        }
+
+        if($(this).val()==9) {
+            insertTemplate9('template_questions');
+        }
+
+        // UPDATE DYNAMICALLY ALL NUMBERS
+        $('.index').each(function(i) {
+            $(this).val(i+1);
+            counter++;
+        });
+        console.log("Counter after inserting template : " + counter);
+        document.getElementById("number_questions").value = counter;
+    });
+
 
 </script>
