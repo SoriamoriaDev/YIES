@@ -1,4 +1,8 @@
-<script>var counter = 0;</script>
+<script>var counter = 0;
+console.log("Counter at start : " + counter);
+</script>
+
+
 
 <div class="container-800">
     <h1>{{ title }}</h1>
@@ -11,7 +15,7 @@
     </br>
 
 
-    <form action="/new_evaluation_2" method="post">
+    <form action="/new_evaluation_2" method="post" onsubmit='return validateForm()'>
 
         <input type='hidden' name='_csrf' value={{_csrf}}>
 
@@ -27,7 +31,7 @@
 
         INTRO TEXT:
 
-        <textarea name="intro_text" rows="3" class="form-control-Maxi2" autofocus="autofocus"  placeholder="example: Could you please take two minutes of your time in order to give feedback on my performance during the past 6 month. It would be highly appreciated. " required></textarea>
+        <textarea name="intro_text" rows="3" class="form-control-Maxi2" autofocus="autofocus" required>example: Could you please take two minutes of your time in order to give feedback on my performance during the past 6 month. It would be highly appreciated.</textarea>
 
         </br>
         SELECT A TEMPLATE:
@@ -56,8 +60,8 @@
 
 <script src="/js/insertTemplates.js" language="Javascript" type="text/javascript"></script>
 <script src="/js/addInput_question.js" language="Javascript" type="text/javascript"></script>
-<script type="text/javascript" src="/jquery/jquery.min.js"></script>
-<script>//var counter = 0;</script>
+<!--<script type="text/javascript" src="/jquery/jquery.min.js"></script>-->
+
 <script>
 
     document.getElementById("last_modified").value = Date.now();
@@ -148,5 +152,35 @@
         document.getElementById("number_questions").value = counter;
     });
 
+</script>
+
+<script>
+    // VALIDATE FORM //
+
+    function validateForm() {
+        console.log("Validate form runs, Counter = " + counter);
+        if (counter < 10) {
+            console.log("Error: not enough competences");
+            $('#error-modal').modal('show');
+            return false;
+        }
+    }
 
 </script>
+
+
+
+
+<!--MODAL TO SHOW ERROR-->
+<div class="modal fade" id="error-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center"><h2>Sorry!</h2></div>
+            <br/><br/>
+            <div class="modal-body" align="center">You need at least 10 competences.</div>
+            <br/><br/>
+            <div class="modal-footer"> <input type="button" id="" class="add-evaluer" data-dismiss="modal" value="Got it!"></div>
+
+        </div>
+    </div>
+</div>
