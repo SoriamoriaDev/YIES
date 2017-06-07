@@ -371,7 +371,8 @@ var procurement = ['Negotiation', 'Commercial understanding', 'Contract understa
     'Technical understanding', 'Budget control', 'Logistics',  'Punctuality', 'Organisational skills',
     'Attention to detail', 'Teamwork', 'Self-motivation', 'Managerial potential', 'Mentoring potential', 'Effectiveness', 'Work quality',
     'Communication skills - verbal', 'Communication skills - written', 'English level', 'Thinking outside the box', 'Interpersonal skills',
-    'Oneness', 'Willingness to learn', 'Commitment to work', 'Adherence to company policy', 'Sharing knowledge'];
+    'Openness', 'Willingness to learn', 'Commitment to work', 'Adherence to company policy', 'Sharing knowledge'];
+
 
 function insertTemplate10(divName){ //Specific
 
