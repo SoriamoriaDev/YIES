@@ -164,7 +164,7 @@ function insertTemplate4(divName){ //Specific
 var installation_engineer = [ 'Procedure development', 'Calculation', 'Risk management', 'Subcontractor management', 'Client interaction', 'Thinking outside the box',
     'Following procedures', 'Adherence to company policy', 'Schedule management', 'Budget management', 'Industry knowledge', 'Product knowledge', 'Punctuality',
     'Organisational skills', 'Attention to detail', 'Teamwork', 'Self-motivation', 'Motivating others', 'Managerial potential', 'Mentoring potential', 'Effectiveness',
-    'Work quality', 'Communication skills - oral', 'Communication skills - written', 'English level', 'Interpersonal skills', 'Openess', 'Willingness to learn',
+    'Work quality', 'Communication skills - oral', 'Communication skills - written', 'English level', 'Interpersonal skills', 'Openness', 'Willingness to learn',
     'Commitment to work', 'Sharing knowledge'];
 
 function insertTemplate5(divName){ //Specific
@@ -339,6 +339,47 @@ function insertTemplate9(divName){ //Specific
     var list = [];
 
     var x = brand_manager; //Specific
+
+    for( i=0 ;  i < x.length ; i++ ) {
+        list +=
+            "<div class='row' id='row" + (counter + 1) + "'>" +
+            "<div class='col-md-2'><input type='text' class='index' name='index' readonly></div>" +
+            "<div class='col-md-8'><input class='input-long' maxlength='30' type='text' name='question' value='"+x[i]+"' required></div>" +
+            "<div class='col-md-2'><div align='center'><a class='action-icons'><i class='fa fa-trash-o fa-lg' id='delete' aria-hidden='true'></i></a></div></div>" +
+            "</div>";
+    }
+
+    newdiv.innerHTML =
+        "COMPETENCE OR KNOWLEDGE:" +
+        "<div class='container-survey'>" +
+        "<div class='row-heading'>" +
+        "<div class='col-md-2'>NUMBER</div>" +
+        "<div class='col-md-8'>TEXT</div>" +
+        "<div class='col-md-2'><div align='center'>ACTION</div></div>" +
+        "</div>" +
+        list +
+        "<div id='dynamicInput'></div>" +
+        "</div>" +
+
+        "<div align='center'><input type='button' id='add_one_line' class='add-evaluer' value='+ Add'></div>";
+
+    document.getElementById(divName).replaceWith(newdiv);
+
+}
+
+var procurement = ['Negotiation', 'Commercial understanding', 'Contract understanding', 'Subcontractor management','Industry knowledge', 'Business thinking',
+    'Technical understanding', 'Budget control', 'Logistics',  'Punctuality', 'Organisational skills',
+    'Attention to detail', 'Teamwork', 'Self-motivation', 'Managerial potential', 'Mentoring potential', 'Effectiveness', 'Work quality',
+    'Communication skills - verbal', 'Communication skills - written', 'English level', 'Thinking outside the box', 'Interpersonal skills',
+    'Oneness', 'Willingness to learn', 'Commitment to work', 'Adherence to company policy', 'Sharing knowledge'];
+
+function insertTemplate10(divName){ //Specific
+
+    var newdiv = document.createElement('div');
+    newdiv.setAttribute("id", "template_questions");
+    var list = [];
+
+    var x = procurement; //Specific
 
     for( i=0 ;  i < x.length ; i++ ) {
         list +=

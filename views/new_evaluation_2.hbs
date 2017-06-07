@@ -46,6 +46,7 @@ console.log("Counter at start : " + counter);
                     <option value="7" id="President of a nation">President of a Nation</option>
                     <option value="8" id="General Manager">General Manager</option>
                     <option value="9" id="Marketing Brand Manager">Marketing Brand Manager</option>
+                    <option value="10" id="Procurement Specialist">Procurement Specialist</option>
                 </select>
 
         </br>
@@ -60,7 +61,6 @@ console.log("Counter at start : " + counter);
 
 <script src="/js/insertTemplates.js" language="Javascript" type="text/javascript"></script>
 <script src="/js/addInput_question.js" language="Javascript" type="text/javascript"></script>
-<!--<script type="text/javascript" src="/jquery/jquery.min.js"></script>-->
 
 <script>
 
@@ -141,6 +141,10 @@ console.log("Counter at start : " + counter);
 
         if($(this).val()==9) {
             insertTemplate9('template_questions');
+        }
+
+        if($(this).val()==10) {
+            insertTemplate10('template_questions');
         }
 
         // UPDATE DYNAMICALLY ALL NUMBERS
