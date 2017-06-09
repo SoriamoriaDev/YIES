@@ -2,7 +2,7 @@
 const nodemailer = require('nodemailer');
 
 
-function sendEmailNewRegister() {
+function sendEmailNewRegister(email) {
 
         console.log("Starting to connect...");
 
@@ -27,7 +27,7 @@ function sendEmailNewRegister() {
             to: 'maxime.fontanille@gmail.com',
             from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
             subject: 'One new registration',
-            text: 'Nice, one more registration'
+            text: 'Nice, one more registration with email :' + email
         };
 
         transporter.sendMail(mailOptions, (err) => {

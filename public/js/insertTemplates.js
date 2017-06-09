@@ -244,11 +244,8 @@ function insertTemplate6(divName){ //Specific
 }
 
 
-
-
-
-var president = ['Vision', 'Leadership', 'Negotiation skills', 'Geopolitics', 'Public affairs', 'Public administration', 'Civil law', 'Constitution',
-    'International conflicts', 'Taxation', 'Official Protocol', 'Politics', 'Conflict resolution', 'Organisational skills', 'Teamwork',
+var president = ['Vision', 'Leadership', 'Negotiation skills', 'Geopolitics', 'Economics', 'General knowledge', 'Public administration', 'Civil law', 'Constitution',
+    'International conflicts', 'Official protocol', 'Politics', 'Conflict resolution', 'Organisational skills', 'Teamwork',
     'Self-motivation', 'Motivating others', 'Effectiveness', 'Work quality', 'Communication skills - oral', 'Communication skills - written',
     'Interpersonal skills', 'English level','Openness', 'Willingness to learn','Commitment to work','Inspiring others'];
 

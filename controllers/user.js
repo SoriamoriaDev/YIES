@@ -112,7 +112,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        sendEmailNewRegister();
+        sendEmailNewRegister(req.body.email);
         res.redirect('/dashboard');
       });
     });
