@@ -273,6 +273,30 @@ const transporter = nodemailer.createTransport({
 
     }
 
+        /**  send email to admin when a survey is started */
+        const mailOptions2 = {
+            to: 'maxime.fontanille@gmail.com',
+            from: `YIES Insightful Talent Evaluation <noreply@yies.co>`,
+            subject: 'Evaluation started for ' + evaluation.first_name + ' ' + evaluation.last_name,
+            text: 'Data : ' + evaluation + '\n\n'
+        };
+
+        transporter.sendMail(mailOptions2, (err) => {
+            if (err){
+                console.log(err);
+            }
+            /*if (err) {
+             req.flash('errors', {msg: err.message});
+             return res.redirect('/new_evaluation_4');
+             }*/
+            console.log("One email sent!");
+            //req.flash('success', {msg: 'Evaluation has been launched successfully!'});
+        });
+
+
+
+
+
 /** FINISH and redirect to same page */
 
         res.redirect('/new_evaluation_4');
