@@ -113,11 +113,60 @@ exports.postSignup = (req, res, next) => {
           return next(err);
         }
         sendEmailNewRegister(req.body.email);
-        res.redirect('/dashboard');
+        res.redirect('/signup2');
       });
     });
   });
 };
+
+
+/**
+ * GET /signup2
+ * Signup page 2.
+ */
+exports.getSignup2 = (req, res) => {
+  /*if (req.user) {
+    return res.redirect('/dashboard');
+  }*/
+  res.render('account/signup2', {
+    title: 'Create Account'
+  });
+};
+
+/**
+ * POST /signup2
+ * Create a new local account page 2.
+ */
+exports.postSignup2 = (req, res, next) => {
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/signup2');
+  }
+
+  User.findById(req.user.id, (err, user) => {
+    if (err) { return next(err); }
+    //user.email = req.body.email || '';
+    user.profile.first_name = req.body.first_name || '';
+    user.profile.last_name = req.body.last_name || '';
+    user.profile.job_title = req.body.job_title || '';
+    user.profile.company = req.body.company || '';
+    user.profile.department = req.body.department || '';
+
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', { msg: 'Registration completed' });
+      res.redirect('/dashboard');
+    });
+  });
+};
+
+
+
 
 /**
  * GET /account

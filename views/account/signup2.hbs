@@ -1,0 +1,60 @@
+<div class="page-header">
+
+
+    <form id="signup-form" method="POST" class="form-horizontal">
+        <input type='hidden' name='_csrf' value={{_csrf}}>
+
+        <div class="col-sm-3"></div>
+        <div class="col-sm-7"><p style="font-size:24px">Additional information <small>(needed for the final report)</small></p></div>
+
+
+        <div class="form-group">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-7"><img src="/img/information report.jpg"></div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="first_name" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-7">
+                <input type="text" name="first_name" id="first_name" placeholder="First Name (optional)" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name" class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-7">
+                <input type="text" name="last_name" id="last_name" placeholder="Last Name (optional)"  class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="job_title" class="col-sm-3 control-label">Job Title</label>
+            <div class="col-sm-7">
+                <input type="text" name="job_title" id="job_title" placeholder="Job Title (optional)"  class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="company" class="col-sm-3 control-label">Company</label>
+            <div class="col-sm-7">
+                <input type="text" name="company" id="company" placeholder="Company (optional)"  class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="department" class="col-sm-3 control-label">Department</label>
+            <div class="col-sm-7">
+                <input type="text" name="department" id="department" placeholder="Department (optional)" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-7">
+                <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>Save</button>
+                <button class="btn btn-success" href="/dashboard">Skip <i class="fa fa-step-forward"></i></button>
+            </div>
+        </div>
+
+    </form>
+</div>
