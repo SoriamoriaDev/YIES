@@ -1,3 +1,5 @@
+<img src="http://www.yies.co/wp-content/uploads/2016/07/logo-2-e1474226198647.png">
+
 YIES helps you make your own competence report based on feedbacks from your peers.
 
 Based on a hackhaton boilerplate it has been developed by Max.
