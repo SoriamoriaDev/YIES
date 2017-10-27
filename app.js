@@ -22,6 +22,7 @@ const multer = require('multer');
 const hbs = require('express-handlebars');
 const schedule = require('node-schedule');
 const sendEmail = require('./task.js');
+const Raven = require('raven');
 
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
@@ -49,6 +50,15 @@ const new_evaluationController = require('./controllers/new_evaluation');
 const sandboxController = require('./controllers/sandbox');
 const static_pagesController = require('./controllers/static_pages');
 
+
+/**
+ * Sentry real-time error tracking and notification
+ */
+// Must configure Raven before doing anything else with it
+Raven.config('https://d5077513420d4a0db3d1b08cfd724a99:3637e0d194ec43568c0dc95fe2e42745@sentry.io/183024').install();
+
+
+
 /**
  * API keys and Passport configuration.
  */
@@ -58,6 +68,23 @@ const passportConfig = require('./config/passport');
  * Create Express server.
  */
 const app = express();
+
+/**
+ * Sentry real-time error tracking and notification
+ */
+// The request handler must be the first middleware on the app
+app.use(Raven.requestHandler());
+
+/*app.get('/', function mainHandler(req, res) {
+  throw new Error('Broke!');
+});
+*/
+
+// The error handler must be before any other error middleware
+app.use(Raven.errorHandler());
+
+
+
 
 /**
  * Connect to MongoDB.

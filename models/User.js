@@ -12,12 +12,17 @@ const userSchema = new mongoose.Schema({
   linkedin: String,
   tokens: Array,
 
+  super_user: Boolean,
+
   profile: {
     first_name: String,
     last_name: String,
     job_title: String,
     company: String,
-    department: String
+    department: String,
+    admin: Boolean,
+    hr: Boolean,
+    manager: Boolean
   }
 }, { timestamps: true });
 
