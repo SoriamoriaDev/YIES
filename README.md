@@ -1,4 +1,4 @@
-<img src="http://www.yies.co/wp-content/uploads/2016/07/logo-2-e1474226198647.png">
+<img src="http://www.yies.co/wp-content/uploads/2017/05/YIES-small-white-text-and-square-green-bg.png">
 
 YIES helps you make your own competence report based on feedbacks from your peers.
 
